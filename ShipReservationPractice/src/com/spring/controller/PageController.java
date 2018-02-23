@@ -17,7 +17,7 @@ public class PageController {
 	@RequestMapping(value= {"/","/login"})
 	public ModelAndView login() {
 		System.out.println("In Page Conteroller");
-		return new ModelAndView("login");
+		return new ModelAndView("login","command",new ProfileBean());
 	}
 	
 	@RequestMapping("registerCustomer")

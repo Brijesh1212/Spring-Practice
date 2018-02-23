@@ -5,6 +5,7 @@ import com.spring.bean.ProfileBean;
 
 public interface User {
 
+	
 	String login(CredentialsBean credentialsBean);
 	boolean logout(String userId);
 	String changePassword(CredentialsBean credentialsBean, String newPassword);
