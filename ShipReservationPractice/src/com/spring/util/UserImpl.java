@@ -10,8 +10,19 @@ public class UserImpl implements User{
 	
 	@Override
 	public String login(CredentialsBean credentialsBean) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			if(credentialsBean!=null) {
+				LoginDAO dao=new LoginDAOImpl();
+				CredentialsBean credentialsBean2=dao.findByID(credentialsBean.getUserID());
+				String usertype=credentialsBean2.getUserType();
+				return usertype;
+			}else {
+				return "Invalid";
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override

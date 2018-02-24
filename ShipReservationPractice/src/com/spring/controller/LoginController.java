@@ -55,7 +55,6 @@ public class LoginController {
 			 			if((customerServiceImpl.findProfileByUserID(credentialsBean.getUserID()))==null){
 			 				session.setAttribute("firstLogin", "FIRST");
 				 			return new ModelAndView("changePassword", "command", new ShipBean());
-
 			 			}
 			 			session.removeAttribute("firstLogin");
 			 			return new ModelAndView("AdminHome", "command", new ShipBean());

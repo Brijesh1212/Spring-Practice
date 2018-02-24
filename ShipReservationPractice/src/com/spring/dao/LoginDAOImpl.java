@@ -48,14 +48,38 @@ public class LoginDAOImpl implements LoginDAO {
 
 	@Override
 	public boolean updateCredential(CredentialsBean credentialsBean) {
-		// TODO Auto-generated method stub
-		return false;
+        try {
+        	if(credentialsBean!=null) {
+        		session.clear();
+        		Transaction tx=session.beginTransaction();
+        		session.update(credentialsBean);
+        		tx.commit();
+        		return tx.wasCommitted();
+        	}else {
+        		return false;
+        	}
+        }catch(Exception e) {
+        	e.printStackTrace();
+        	return false;
+        }
 	}
 
 	@Override
 	public CredentialsBean findByID(String userID) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			if(userID!= null) {
+		session.clear();
+		Transaction tx = session.beginTransaction();
+		CredentialsBean bean=(CredentialsBean)session.get(CredentialsBean.class, userID);
+		
+		return bean;
+			}else {
+				return null;
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

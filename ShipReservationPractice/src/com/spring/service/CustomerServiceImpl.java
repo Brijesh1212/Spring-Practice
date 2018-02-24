@@ -13,6 +13,8 @@ import com.spring.bean.ProfileBean;
 import com.spring.bean.ReservationBean;
 import com.spring.bean.ScheduleBean;
 import com.spring.dao.CustomerDAOImpl;
+import com.spring.dao.LoginDAO;
+import com.spring.dao.LoginDAOImpl;
 
 
 public class CustomerServiceImpl implements CustomerService{
@@ -122,8 +124,11 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public ProfileBean findProfileByUserID(String userID) {
-		// TODO Auto-generated method stub
-		return null;
+		if(userID!=null) {
+			return customerDAO.findCustomerByUserID(userID);
+		}else {
+			return null;
+			}
 	}
 
 	
