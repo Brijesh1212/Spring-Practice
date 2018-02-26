@@ -8,17 +8,17 @@
 </head>
 <body>
 <ul>
-							<li class="current"><a href="/SRS/changePassword" target="allpages">CHANGE PASSWORD</a></li>
-							<li class="current"><a href="/SRS/reservation" target="allpages">RESERVATION</a></li>
-							<li class="current"><a href="/SRS/cancelTicketById" target="allpages">CANCELLATION</a></li>
-							<li class="current"><a href="/SRS/viewTicket" target="allpages">PRINT/SAVE TICKET</a></li>
+							<li class="current"><a href="/ShipReservationPractice/changePassword" target="allpages">CHANGE PASSWORD</a></li>
+							<li class="current"><a href="/ShipReservationPractice/reservation" target="allpages">RESERVATION</a></li>
+							<li class="current"><a href="/ShipReservationPractice/cancelTicketById" target="allpages">CANCELLATION</a></li>
+							<li class="current"><a href="/ShipReservationPractice/viewTicket" target="allpages">PRINT/SAVE TICKET</a></li>
 							
 							
 							<li class="submenu">
 								<a href="#">VIEW</a>
 								<ul>
-									<li><a href="/SRS/viewShipSchedule" class="button" target="allpages">SHIP/SCHEDULE</a></li>
-									<li><a href="/SRS/viewTicket" class="button" target="allpages">TICKET</a></li>
+									<li><a href="/ShipReservationPractice/viewShipSchedule" class="button" target="allpages">SHIP/SCHEDULE</a></li>
+									<li><a href="/ShipReservationPractice/viewTicket" class="button" target="allpages">TICKET</a></li>
 									
 								</ul>
 							</li>
@@ -31,7 +31,7 @@
 									
 								</ul>
 							</li>
-							<li><a href="/SRS/logout" class="button special">LOGOUT</a></li>
+							<li><a href="/ShipReservationPractice/logout" class="button special">LOGOUT</a></li>
 						</ul>
 						<section id="banner">
 					<!--

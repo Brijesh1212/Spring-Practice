@@ -4,6 +4,7 @@ import com.spring.bean.CredentialsBean;
 import com.spring.bean.ProfileBean;
 import com.spring.dao.LoginDAO;
 import com.spring.dao.LoginDAOImpl;
+import com.spring.util.AuthenticationImpl;
 
 public class UserImpl implements User{
 
@@ -27,14 +28,30 @@ public class UserImpl implements User{
 
 	@Override
 	public boolean logout(String userId) {
-		// TODO Auto-generated method stub
-		return false;
+		if(userId!=null) {
+			AuthenticationImpl authenticationImpl=new AuthenticationImpl();
+			LoginDAOImpl impl=new LoginDAOImpl();
+			CredentialsBean newcredentialsBean=impl.findByID(userId);
+			 return authenticationImpl.changeLoginStatus(newcredentialsBean, 0);
+			} else {
+			return false;
+			}
 	}
 
 	@Override
 	public String changePassword(CredentialsBean credentialsBean, String newPassword) {
-		// TODO Auto-generated method stub
-		return null;
+		if(credentialsBean!=null && newPassword!=null){
+			LoginDAOImpl loginDAO_Impl=new LoginDAOImpl();
+			credentialsBean.setPassword(newPassword);
+			boolean value=loginDAO_Impl.updateCredential(credentialsBean);
+			if(value){
+				return "SUCCESS";
+			} else {
+				return "FAIL";
+			}
+			}else{
+			return "INVALID";
+			}
 	}
 
 	@Override
