@@ -77,8 +77,7 @@ public class LoginController {
 					return new ModelAndView("login","command",new CredentialsBean());
 
 			 	}
-		}			
-		else{
+		}else{
 			model.addAttribute("invalid", "Incorrect username/password");
 			return new ModelAndView("login","command",new CredentialsBean());
 		}
