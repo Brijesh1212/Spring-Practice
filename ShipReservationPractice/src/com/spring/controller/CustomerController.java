@@ -112,6 +112,7 @@ public class CustomerController {
 				String shipid = administratorImpl.viewByScheduleId(scheduleid).getShipID();
 				int reservation_seats = customerServiceImpl.getReserSeat(shipid);
 				reservation_seats -= seats;
+				System.out.println(reservation_seats +" : reservation seat");
 				ShipBean shipBean = administratorImpl.viewByShipId(shipid);
 				shipBean.setReservationCapacity(reservation_seats);
 				administratorImpl.modifyShip(shipBean);
@@ -119,7 +120,7 @@ public class CustomerController {
 				
 				ReservationDAOImpl daoImpl = new ReservationDAOImpl();
 				
-				String reservationid = daoImpl.generateReservationId(source,destination);
+				String reservationid = "1";
 				
 				Date bookingDate = new Date();
 				String bookingStatus = "BOOKED";
@@ -132,7 +133,7 @@ public class CustomerController {
 				reservationBean.setNoOfSeats(seats);
 				reservationBean.setTotalFare(totfare);
 				reservationBean.setBookingStatus(bookingStatus);
-				
+				System.out.println("Bean done");
 				
 				ArrayList<PassengerBean> passengerBeans = new ArrayList<PassengerBean>();
 				String names[] = (String[])session.getAttribute("names");
@@ -141,7 +142,7 @@ public class CustomerController {
 				PassengerBean passengerBean;
 				CustomerDAOImpl customerDAOImpl = new CustomerDAOImpl();
 				int max = 0;
-				
+				System.out.println("passed");
 				max=customerDAOImpl.getSeatNo();
 				System.out.println("MAX::::::::::"+max);
 				

@@ -236,8 +236,21 @@ public class CustomerDAOImpl implements CustomerDAO{
 	}
 	@Override
 	public Integer getSeatNo() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			session.clear();
+			
+			Transaction transaction=null;
+			transaction = session.beginTransaction();
+			String hql= "select max(seats) from PassengerBean"; 
+			List list = session.createQuery(hql).list(); 
+			int maxID = ( (Integer)list.get(0) ).intValue(); 
+			transaction.commit();
+			return maxID;
+			}catch(Exception exception){
+			
+				exception.printStackTrace();
+				return 0;
+			}
 	}
 	
 }

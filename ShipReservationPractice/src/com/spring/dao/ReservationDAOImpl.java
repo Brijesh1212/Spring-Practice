@@ -52,7 +52,7 @@ public class ReservationDAOImpl implements ReservationDAO{
 				@Override
 				public Object doInHibernate(org.hibernate.Session arg0)
 						throws HibernateException, SQLException {
-					return session.createSQLQuery("select srs_seq_reservation_id.NEXTVAL as id from dual").addScalar("id", Hibernate.LONG).uniqueResult(); 
+					return session.createSQLQuery("select reservationID from srs_tbl_reservation ").addScalar("id", Hibernate.LONG).uniqueResult(); 
 				}
 			});
 			String initialSource =  source.substring(0,2).toUpperCase();
