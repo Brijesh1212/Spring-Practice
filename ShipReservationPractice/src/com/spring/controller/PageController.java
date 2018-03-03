@@ -3,9 +3,7 @@ package com.spring.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,7 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.bean.CredentialsBean;
 import com.spring.bean.ProfileBean;
-import com.spring.bean.ShipBean;
+import com.spring.bean.RouteBean;
+import com.spring.bean.ScheduleBean;
 
 
 @Controller
@@ -74,6 +73,43 @@ public class PageController {
 			}
 				return new ModelAndView("login", "command", new CredentialsBean());
 
+	  }
+	
+	@RequestMapping(value="/addRoute" , method = RequestMethod.GET)
+	public ModelAndView addRoute(ModelMap model,HttpSession session,HttpServletRequest request) {
+		CredentialsBean credentialsBean ;
+		session = request.getSession();
+		if((credentialsBean=(CredentialsBean)session.getAttribute("credentialsBean"))!=null && credentialsBean.getUserType().equals("A")){
+			if(credentialsBean.getLoginStatus()==1){
+				return new ModelAndView("addRoute", "command", new RouteBean());
+			}else{
+				return new ModelAndView("login", "command", new CredentialsBean());
+
+			}
+		}
+				return new ModelAndView("CustomerHome", "command", new CredentialsBean());
+	  }
+	
+	@RequestMapping(value="/addSchedule" , method = RequestMethod.GET)
+	public ModelAndView addSchedule(ModelMap model,HttpSession session,HttpServletRequest request) {
+		CredentialsBean credentialsBean ;
+		
+		session = request.getSession();
+		if((credentialsBean=(CredentialsBean)session.getAttribute("credentialsBean"))!=null && credentialsBean.getUserType().equals("A")){
+			return new ModelAndView("addSchedule", "command", new ScheduleBean());
+		}
+			return new ModelAndView("login", "command", new CredentialsBean());
+
+	  }
+	
+	@RequestMapping(value="/reservation" , method = RequestMethod.GET)
+	public ModelAndView reservation(ModelMap model,HttpSession session,HttpServletRequest request) {
+		CredentialsBean credentialsBean ;
+		session = request.getSession();
+		if((credentialsBean=(CredentialsBean)session.getAttribute("credentialsBean"))!=null && credentialsBean.getUserType().equals("C")){
+			return new ModelAndView("reservation", "command", null);
+		}
+			return new ModelAndView("login", "command", new CredentialsBean());
 	  }
 
 }

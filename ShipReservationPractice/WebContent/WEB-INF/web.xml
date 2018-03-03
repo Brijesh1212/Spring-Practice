@@ -9,4 +9,30 @@
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
   </servlet-mapping>
+  <servlet>
+    	<description>
+    	</description>
+    	<display-name>
+    	ShipServlet</display-name>
+    	<servlet-name>ShipServlet</servlet-name>
+    	<servlet-class>
+    	com.spring.servlet.ShipServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    	<servlet-name>ShipServlet</servlet-name>
+    	<url-pattern>/ShipServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+    	<description>
+    	</description>
+    	<display-name>
+    	RouteServlet</display-name>
+    	<servlet-name>RouteServlet</servlet-name>
+    	<servlet-class>
+    	com.spring.servlet.RouteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    	<servlet-name>RouteServlet</servlet-name>
+    	<url-pattern>/RouteServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

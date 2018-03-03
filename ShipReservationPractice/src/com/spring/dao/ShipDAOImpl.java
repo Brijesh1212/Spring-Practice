@@ -1,7 +1,9 @@
 package com.spring.dao;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
+import org.hibernate.Query;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
 
@@ -43,26 +45,47 @@ public class ShipDAOImpl implements ShipDAO{
 
 	@Override
 	public int deleteShip(ArrayList<String> ShipId) {
-		// TODO Auto-generated method stub
-		return 0;
+		Transaction transaction= session.beginTransaction();
+		
+		for (Iterator iterator = ShipId.iterator(); iterator.hasNext();) {
+			String string = (String) iterator.next();
+			ShipBean bean=new ShipBean();
+			bean.setShipID(string);
+			session.delete(bean);
+			transaction.commit();
+			System.out.println("Deleted"); 
+		}
+		return 1;
 	}
 
 	@Override
 	public boolean updateShip(ShipBean shipbean) {
-		// TODO Auto-generated method stub
-		return false;
+		Transaction transaction= session.beginTransaction();
+		session.update(shipbean);
+		transaction.commit();
+		return true;
 	}
 
 	@Override
 	public ShipBean findByID(String ShipId) {
-		// TODO Auto-generated method stub
-		return null;
+		Transaction transaction= session.beginTransaction();
+		ShipBean shipBean=(ShipBean)session.load(ShipBean.class, ShipId);
+		transaction.commit();
+		return shipBean;
 	}
 
 	@Override
 	public ArrayList<ShipBean> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		Transaction transaction= session.beginTransaction();
+		Query query= session.createQuery("from ShipBean");
+		transaction.commit();
+		Iterator<ShipBean> iterator=query.iterate();
+		ArrayList<ShipBean> arrayList=new ArrayList<ShipBean>();
+		while (iterator.hasNext()) {
+			ShipBean shipBean = (ShipBean) iterator.next();
+			arrayList.add(shipBean);
+		}
+		return arrayList;
 	}
 
 	@Override

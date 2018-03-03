@@ -8,6 +8,10 @@ import com.spring.bean.ReservationBean;
 import com.spring.bean.RouteBean;
 import com.spring.bean.ScheduleBean;
 import com.spring.bean.ShipBean;
+import com.spring.dao.RouteDAO;
+import com.spring.dao.RouteDAOImpl;
+import com.spring.dao.ScheduleDAO;
+import com.spring.dao.ScheduleDAOImpl;
 import com.spring.dao.ShipDAO;
 import com.spring.dao.ShipDAOImpl;
 import com.spring.service.Administrator;
@@ -15,6 +19,9 @@ import com.spring.service.Administrator;
 public class AdministratorImpl implements Administrator {
 
 	ShipDAO shipDao=new ShipDAOImpl();
+	RouteDAO routeDao=new RouteDAOImpl();
+	ScheduleDAO scheduleDAO=new ScheduleDAOImpl();
+	
 	@Override
 	public String addShip(ShipBean shipbean) {
 		return shipDao.createShip(shipbean);
@@ -22,26 +29,22 @@ public class AdministratorImpl implements Administrator {
 
 	@Override
 	public boolean modifyShip(ShipBean Shipbean) {
-		// TODO Auto-generated method stub
-		return false;
+		return shipDao.updateShip(Shipbean);
 	}
 
 	@Override
 	public int removeShip(ArrayList<String> ShipId) {
-		// TODO Auto-generated method stub
-		return 0;
+		return shipDao.deleteShip(ShipId);
 	}
 
 	@Override
 	public ShipBean viewByShipId(String ShipId) {
-		// TODO Auto-generated method stub
-		return null;
+		return shipDao.findByID(ShipId);
 	}
 
 	@Override
 	public ArrayList<ShipBean> viewByAllShips() {
-		// TODO Auto-generated method stub
-		return null;
+		return shipDao.findAll();
 	}
 
 	@Override
@@ -52,8 +55,7 @@ public class AdministratorImpl implements Administrator {
 
 	@Override
 	public String addSchedule(ScheduleBean schedulebean) {
-		// TODO Auto-generated method stub
-		return null;
+		return scheduleDAO.createShipSchedule(schedulebean);
 	}
 
 	@Override
@@ -70,26 +72,22 @@ public class AdministratorImpl implements Administrator {
 
 	@Override
 	public ArrayList<ScheduleBean> viewByAllSchedule() {
-		// TODO Auto-generated method stub
-		return null;
+		return scheduleDAO.findAllSchedule();
 	}
 
 	@Override
 	public ScheduleBean viewByScheduleId(String scheduleId) {
-		// TODO Auto-generated method stub
-		return null;
+		return scheduleDAO.findByIDSchedule(scheduleId);
 	}
 
 	@Override
 	public String addRoute(RouteBean routebean) {
-		// TODO Auto-generated method stub
-		return null;
+		return routeDao.createShipRoute(routebean);
 	}
 
 	@Override
 	public boolean modifyRoute(RouteBean routebean) {
-		// TODO Auto-generated method stub
-		return false;
+		return routeDao.updateShipRoute(routebean);
 	}
 
 	@Override
@@ -100,14 +98,12 @@ public class AdministratorImpl implements Administrator {
 
 	@Override
 	public RouteBean viewByRouteId(String routeId) {
-		// TODO Auto-generated method stub
-		return null;
+		return routeDao.findByIDRoute(routeId);
 	}
 
 	@Override
 	public ArrayList<RouteBean> viewByAllRoute() {
-		// TODO Auto-generated method stub
-		return null;
+		return routeDao.findAllRoute();
 	}
 
 	@Override

@@ -33,8 +33,7 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public ArrayList<ScheduleBean> viewScheduleByRoute(String source, String destination, Date date) {
-		// TODO Auto-generated method stub
-		return null;
+		return customerDAO.viewScheduleByRoute(source, destination, date);
 	}
 
 
@@ -61,22 +60,20 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public int getReserSeat(String flightID) {
-		// TODO Auto-generated method stub
-		return 0;
+		return customerDAO.getReserSeat(flightID);
 	}
 
 
 	@Override
 	public boolean findByCardNumber(String userid, String cardnumber) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return customerDAO.findByCardNumber(userid, cardnumber);
 	}
 
 
 	@Override
 	public String process(CreditCardBean payment, double totalFare) {
-		// TODO Auto-generated method stub
-		return null;
+		return customerDAO.process(payment, totalFare);
 	}
 
 
