@@ -49,8 +49,7 @@ public class AdministratorImpl implements Administrator {
 
 	@Override
 	public ArrayList<PassengerBean> viewPasengersByShip(String scheduleid) {
-		// TODO Auto-generated method stub
-		return null;
+		return shipDao.findPasengersByShip(scheduleid);
 	}
 
 	@Override

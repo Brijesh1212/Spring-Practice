@@ -90,8 +90,40 @@ public class ShipDAOImpl implements ShipDAO{
 
 	@Override
 	public ArrayList<PassengerBean> findPasengersByShip(String scheduleid) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			session.clear();
+			
+			Transaction transaction=null;
+			transaction = session.beginTransaction();
+			System.out.println(scheduleid);
+			
+	
+			Query query1 = session.createQuery("from PassengerBean where scheduleID=?");
+			query1.setString(0, scheduleid);
+			
+			Iterator<PassengerBean> iterator1=query1.iterate();
+			ArrayList<PassengerBean> arrayList = new ArrayList<PassengerBean>();
+			
+			while(iterator1.hasNext()){
+				PassengerBean passengerBean=new PassengerBean();
+				
+				passengerBean=(PassengerBean)iterator1.next();
+				
+				arrayList.add(passengerBean);
+	
+			}
+		transaction.commit();
+		return arrayList;
+		
+	
+		
+		} 
+		catch (Exception exception) {
+
+			exception.printStackTrace();
+			return null;
+		
+			}
 	}
 
 }

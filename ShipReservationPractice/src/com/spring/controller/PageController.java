@@ -111,5 +111,15 @@ public class PageController {
 		}
 			return new ModelAndView("login", "command", new CredentialsBean());
 	  }
+	
+	@RequestMapping(value="/pdf" , method = RequestMethod.POST)
+	public ModelAndView pdf(ModelMap model,HttpSession session,HttpServletRequest request) {
+		CredentialsBean credentialsBean ;
+		session = request.getSession();
+		if((credentialsBean=(CredentialsBean)session.getAttribute("credentialsBean"))!=null && credentialsBean.getUserType().equals("C")){
+				return new ModelAndView("PdfTicketSummary", "command", new CredentialsBean());
+		}
+			return new ModelAndView("login", "command", new CredentialsBean());
+	  }
 
 }

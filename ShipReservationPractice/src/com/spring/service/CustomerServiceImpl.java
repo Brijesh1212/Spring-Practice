@@ -39,8 +39,7 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public String reserveTicket(ReservationBean reservationBean, ArrayList<PassengerBean> passengers) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.customerDAO.reserveTicket(reservationBean,passengers);
 	}
 
 
@@ -79,15 +78,13 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public Map<ReservationBean, ArrayList<PassengerBean>> viewTicket(String reservationID) {
-		// TODO Auto-generated method stub
-		return null;
+		return customerDAO.viewTicket(reservationID);
 	}
 
 
 	@Override
 	public boolean cancelTicket(String reservationId) {
-		// TODO Auto-generated method stub
-		return false;
+		return customerDAO.cancelTicket(reservationId);
 	}
 
 
@@ -114,8 +111,7 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public ArrayList<ReservationBean> findByUserID(String userID) {
-		// TODO Auto-generated method stub
-		return null;
+		return customerDAO.findByUserID(userID);
 	}
 
 

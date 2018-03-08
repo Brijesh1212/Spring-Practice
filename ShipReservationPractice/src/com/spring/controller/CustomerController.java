@@ -120,7 +120,7 @@ public class CustomerController {
 				
 				ReservationDAOImpl daoImpl = new ReservationDAOImpl();
 				
-				String reservationid = "1";
+				String reservationid = "2";
 				
 				Date bookingDate = new Date();
 				String bookingStatus = "BOOKED";
@@ -178,6 +178,124 @@ public class CustomerController {
 		return new ModelAndView("proceedtopayment","command",new CreditCardBean());
 		
 }
+	
+	@RequestMapping(value="/cancelTicketById" , method = RequestMethod.GET)
+	public ModelAndView cancelTicketById(HttpSession session,HttpServletRequest request,@ModelAttribute("cancelTicket")ReservationBean reservationBean) {
+		CredentialsBean credentialsBean ;
+		session = request.getSession();
+		if((credentialsBean=(CredentialsBean)session.getAttribute("credentialsBean"))!=null && credentialsBean.getUserType().equals("C")){
+			if(credentialsBean.getLoginStatus()==1){
+				return new ModelAndView("cancelTicketById", "command", new ReservationBean());
+			}else{
+				return new ModelAndView("login", "command", new CredentialsBean());
+
+			}
+		}
+			return new ModelAndView("AdminHome", "command", new CredentialsBean());
+
+	   }
+	
+	@RequestMapping(value="/cancelTicket" , method = RequestMethod.POST)
+	public ModelAndView cancelTicket(ModelMap model, HttpSession session,HttpServletRequest request,@ModelAttribute("cancel")ReservationBean reservationBean) {
+			System.out.println("USERRRRRRRRRRRRRRRRRRR"+reservationBean.getReservationID());
+			Map<ReservationBean,ArrayList<PassengerBean>> map= customerServiceImpl.viewTicket(reservationBean.getReservationID());
+			session.setAttribute("map", map);
+		
+			if(map!=null){
+				return new ModelAndView("cancelTicket", "command", new ReservationBean());
+			}else{
+				model.addAttribute("error", "Reservation ID doesn't exist");
+				return new ModelAndView("cancelTicketById", "command", new ReservationBean());
+
+			}
+
+	   }
+	
+	@RequestMapping(value="/cancelTicketDetails" , method = RequestMethod.POST)
+	public ModelAndView cancelTicketDetails(ModelMap model,HttpSession session,HttpServletRequest request) {
+			String userid = (String)session.getAttribute("userid");
+			ArrayList<ReservationBean> arrayList = customerServiceImpl.findByUserID(userid);
+			System.out.println(arrayList.get(0).getBookingStatus()+" Booking Status");
+			for(int i=0; i<arrayList.size(); i++){
+				if(customerServiceImpl.cancelTicket(arrayList.get(i).getReservationID())){
+					model.addAttribute("success","Your tickets have been cancelled successfully.");
+				}else{
+					model.addAttribute("failed","Your tickets could not be cancelled.");
+
+				}
+			}
+			
+			return new ModelAndView("cancelTicketDetails", "command", new ReservationBean());
+
+	   }
+	
+	@RequestMapping(value="/viewTicket" , method = RequestMethod.GET)
+	public ModelAndView viewTicket(ModelMap model,HttpSession session,HttpServletRequest request) {
+		CredentialsBean credentialsBean ;
+		session = request.getSession();
+		if((credentialsBean=(CredentialsBean)session.getAttribute("credentialsBean"))!=null && credentialsBean.getUserType().equals("C")){
+			if(credentialsBean.getLoginStatus()==1){
+				return new ModelAndView("viewTicket", "command", new ReservationBean());
+			}else{
+					return new ModelAndView("login", "command", new CredentialsBean());
+
+				}
+			}
+				
+					return new ModelAndView("AdminHome", "command", new CredentialsBean());
+	   }
+	
+	@RequestMapping(value="/viewTicketDetails" , method = RequestMethod.POST)
+	public ModelAndView viewTicketDetails(ModelMap model,HttpSession session,HttpServletRequest request, @ModelAttribute("command")ReservationBean reservationBean) {
+				Map<ReservationBean,ArrayList<PassengerBean>> map= customerServiceImpl.viewTicket(reservationBean.getReservationID());
+				session.setAttribute("map", map);
+				if(map!=null){
+					model.addAttribute("map",map);
+					return new ModelAndView("viewTicketById", "command", new ShipBean());
+				}else{
+					model.addAttribute("error", "Reservation ID doesn't exist");
+					return new ModelAndView("viewTicket", "command", new ReservationBean());
+
+				}
+	   }
+	
+	@RequestMapping(value="/ViewShipScheduleDetails" , method = RequestMethod.POST)
+	public ModelAndView ViewShipScheduleDetails(ModelMap model,HttpSession session,HttpServletRequest request) throws ParseException {
+		String source = request.getParameter("source");
+		System.out.println(source);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-'W'ww");
+
+        simpleDateFormat.getCalendar().setFirstDayOfWeek(Calendar.MONDAY);
+		String dest = request.getParameter("dest");
+		Date date = simpleDateFormat.parse((request.getParameter("date")));
+		System.out.println(date);
+				ArrayList<ScheduleBean> arrayList = customerServiceImpl.viewScheduleByRoute(source, dest, date);
+				System.out.println(arrayList);
+				if(arrayList!=null){
+					session.setAttribute("scheduleBeans", arrayList);
+					return new ModelAndView("viewShipScheduleCustomer", "command", new ScheduleBean());
+				}else{
+					model.addAttribute("error","No Ship/Schedule Exist");
+					return new ModelAndView("viewShipSchedule", "command", new ScheduleBean());
+				}
+	   }
+	
+	@RequestMapping(value="/viewShipSchedule" , method = RequestMethod.GET)
+	public ModelAndView viewShipSchedule(ModelMap model,HttpSession session,HttpServletRequest request) {
+		CredentialsBean credentialsBean ;
+		session = request.getSession();
+		if((credentialsBean=(CredentialsBean)session.getAttribute("credentialsBean"))!=null && credentialsBean.getUserType().equals("C")){
+			if(credentialsBean.getLoginStatus()==1){
+				return new ModelAndView("viewShipSchedule", "command", null);
+			}else{
+				return new ModelAndView("login", "command", new CredentialsBean());
+
+			}
+		}
+		
+			return new ModelAndView("AdminHome", "command", new CredentialsBean());
+	   }
+
 	
 
 }

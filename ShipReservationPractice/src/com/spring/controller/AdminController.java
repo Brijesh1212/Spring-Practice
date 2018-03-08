@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.service.AdministratorImpl;
+import com.spring.bean.PassengerBean;
 import com.spring.bean.CredentialsBean;
 import com.spring.bean.ScheduleBean;
 import com.spring.bean.RouteBean;
@@ -115,6 +116,35 @@ public class AdminController {
 				arrayList = administratorImpl.viewByAllSchedule();
 				session.setAttribute("scheduleList", arrayList);
 				return new ModelAndView("viewShipScheduleDetails", "command", new ScheduleBean());
+			}else{
+				return new ModelAndView("login", "command", new CredentialsBean());
+
+			}
+		}
+			return new ModelAndView("CustomerHome", "command", new CredentialsBean());
+	   }
+	
+	@RequestMapping(value="/viewPassengerDetails" , method = RequestMethod.POST)
+	public ModelAndView viewPassengers(ModelMap model,HttpSession session,HttpServletRequest request, @ModelAttribute("command")ScheduleBean scheduleBean) {
+		session = request.getSession();
+		ArrayList<PassengerBean> arrayList = administratorImpl.viewPasengersByShip(scheduleBean.getScheduleID());
+		System.out.println(arrayList.size());
+		if(arrayList.size()>0){
+					session.setAttribute("passengerList", arrayList);
+					return new ModelAndView("viewPassengerDetails","command",new PassengerBean());
+				}
+					model.addAttribute("scheduleresult", "No passenger exist for this ID");
+					return new ModelAndView("viewPassenger","command",new PassengerBean());
+
+	}
+	
+	@RequestMapping(value="/viewPassenger" , method = RequestMethod.GET)
+	public ModelAndView viewPassenger(ModelMap model,HttpSession session,HttpServletRequest request) {
+		CredentialsBean credentialsBean ;
+		session = request.getSession();
+		if((credentialsBean=(CredentialsBean)session.getAttribute("credentialsBean"))!=null && credentialsBean.getUserType().equals("A")){
+			if(credentialsBean.getLoginStatus()==1){
+			return new ModelAndView("viewPassenger", "command", new ScheduleBean());
 			}else{
 				return new ModelAndView("login", "command", new CredentialsBean());
 

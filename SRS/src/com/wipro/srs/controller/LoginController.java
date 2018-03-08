@@ -39,7 +39,6 @@ public class LoginController {
 	  }
 	
 	
-	
 	@RequestMapping(value="/loginuser" , method = RequestMethod.POST)
 	public ModelAndView loginUser(ModelMap model,@ModelAttribute("loginuser")CredentialsBean credentialsBean, HttpServletRequest request) {
 		String userType;

@@ -19,6 +19,8 @@ import org.hibernate.Transaction;
 import com.itextpdf.text.log.SysoCounter;
 import com.spring.bean.*;
 import com.spring.util.DBUtil;
+import com.spring.bean.PassengerBean;
+import com.spring.bean.ReservationBean;
 import com.spring.bean.ShipBean;
 import com.spring.bean.CreditCardBean;
 import com.spring.bean.RouteBean;
@@ -85,8 +87,22 @@ public class CustomerDAOImpl implements CustomerDAO{
 	 }
 	@Override
 	public String reserveTicket(ReservationBean reservationBean, ArrayList<PassengerBean> passengers) {
-		// TODO Auto-generated method stub
-		return null;
+		session.clear();
+		Transaction transaction = session.beginTransaction();
+	    session.save(reservationBean);
+	    transaction.commit();
+	   
+		for(int i=0;i<passengers.size();i++)
+		{
+				session.clear();
+				Transaction tx = session.beginTransaction();
+				session.save(passengers.get(i));
+				tx.commit();
+		
+		}
+		
+			
+			return "SUCCESS";
 	}
 	@Override
 	public String generateResId(String scheduleID) {
@@ -191,13 +207,71 @@ public class CustomerDAOImpl implements CustomerDAO{
 	}
 	@Override
 	public Map<ReservationBean, ArrayList<PassengerBean>> viewTicket(String reservationID) {
-		// TODO Auto-generated method stub
-		return null;
+		session.clear();
+		Transaction tx = session.beginTransaction();
+		String sql="from ReservationBean where reservationID=?";
+		Query q=session.createQuery(sql);
+		q.setParameter(0,reservationID);
+		
+		
+		
+		ReservationBean reservationBean=(ReservationBean)q.uniqueResult();
+		
+		String sql2="from PassengerBean where reservationID=?";
+		Query q4=session.createQuery(sql2);
+		q4.setParameter(0,reservationID);
+		@SuppressWarnings("unchecked")
+		Iterator<PassengerBean> itr = q4.iterate();
+		ArrayList<PassengerBean> beans = new ArrayList<PassengerBean>();
+		while(itr.hasNext()){
+			PassengerBean passengerBean = (PassengerBean)itr.next();
+			beans.add(passengerBean);
+			System.out.println("P Name: "+passengerBean.getName());
+		}
+		if(reservationBean==null || beans==null){
+			return null;
+		}
+
+		Map<ReservationBean,ArrayList<PassengerBean>> map=new HashMap<ReservationBean,ArrayList<PassengerBean>>();
+		map.put(reservationBean,beans);	
+		tx.commit();
+		return map;
 	}
 	@Override
-	public boolean cancelTicket(String reservationId) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean cancelTicket(String reservationID) {
+		session.clear();
+		Transaction tx = session.beginTransaction();
+		 
+		Query rquery2=session.createQuery("from ReservationBean where reservationID=?");
+		rquery2.setParameter(0, reservationID);
+		ReservationBean l=(ReservationBean)rquery2.uniqueResult();
+		String uid=l.getUserID();
+		double fare=l.getTotalFare();
+		
+		Query rquery3=session.createQuery("from CreditCardBean where userID=?");
+		rquery3.setParameter(0, uid);
+		CreditCardBean p=(CreditCardBean)rquery3.uniqueResult();
+		double remBalance=p.getBalance();
+		double balance=remBalance+fare;
+		
+		Query rquery4=session.createQuery("Update CreditCardBean set balance=? where userID=?");
+		rquery4.setParameter(0, balance);
+		rquery4.setParameter(1, uid);
+		rquery4.executeUpdate();
+		
+		System.out.println("Balance : "+balance);
+		
+		Query rquery=session.createQuery("Delete from ReservationBean where reservationID=?");
+		rquery.setParameter(0, reservationID);
+		rquery.executeUpdate();
+		
+		Query rquery1=session.createQuery("Delete from PassengerBean where reservationID=?");
+		rquery1.setParameter(0, reservationID);
+		rquery1.executeUpdate();
+		
+		
+		tx.commit();
+		return true;
 	}
 	@Override
 	public int setCapacity(String flightID, int seatingCapacity) {
@@ -216,7 +290,36 @@ public class CustomerDAOImpl implements CustomerDAO{
 	}
 	@Override
 	public ArrayList<ReservationBean> findByUserID(String userID) {
-		// TODO Auto-generated method stub
+		try {
+			session.clear();
+			
+			Transaction transaction=null;
+			transaction = session.beginTransaction();
+			/*System.out.println(scheduleId);*/
+			ReservationBean reservationBean=new ReservationBean();
+			Query query = session.createQuery("from ReservationBean as get where get.userID=?");
+			query.setString(0, userID);
+			@SuppressWarnings("unchecked")
+			Iterator<ReservationBean> iterator=query.iterate();
+			
+			ArrayList<ReservationBean> arrayList=new ArrayList<ReservationBean>();
+			while(iterator.hasNext()){
+				
+				 reservationBean=(ReservationBean)iterator.next();
+				 arrayList.add(reservationBean);
+				
+			}
+			transaction.commit();
+			return arrayList;
+			
+			
+			
+		}
+		catch(Exception exception)
+		{
+			exception.printStackTrace();
+			
+		}
 		return null;
 	}
 	@Override
