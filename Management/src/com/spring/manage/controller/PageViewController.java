@@ -13,7 +13,7 @@ public class PageViewController {
 	
 	@RequestMapping(value= {"/","/index"})
 	public ModelAndView index() {
-		return new ModelAndView("index","command",new Customer());
+		return new ModelAndView("login","command",new Customer());
 	}
 	
 	@RequestMapping("/registration")

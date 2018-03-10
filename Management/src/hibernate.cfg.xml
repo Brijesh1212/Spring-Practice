@@ -11,6 +11,7 @@
 			<property name="hibernate.show_sql">true</property>
 			<property name="hibernate.current_session_context_class">thread</property>
 			<mapping class="com.spring.manage.bean.Customer"/>
+			<mapping class="com.spring.manage.bean.Credentials"/>
 			<mapping class="com.spring.manage.bean.Passenger"/>
 			<mapping class="com.spring.manage.bean.Reservation"/>
 			<mapping class="com.spring.manage.bean.Route"/>

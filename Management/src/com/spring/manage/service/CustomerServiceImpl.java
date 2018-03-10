@@ -13,6 +13,7 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public String registerCustomer(Customer customer) {
+		System.out.println("In CustomerService RegC");
 		return customerDAO.registerCustomer(customer);
 	}
 

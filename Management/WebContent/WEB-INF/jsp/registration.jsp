@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -15,8 +16,7 @@
     <form:input path="email" placeholder="email" /><br>
     <form:input path="password" placeholder="password" /><br>
     <form:input path="address" placeholder="address" /><br>
-    <form:input path="number" placeholder="number" /><br>
-            <input class="form-control" type="submit" value="Login" onclick="return validate()"/>
+   <input class="form-control" type="submit" value="Login" onclick="return validate()"/>
 </form:form>
 </body>
 </html>

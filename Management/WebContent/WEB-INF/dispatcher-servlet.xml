@@ -20,9 +20,14 @@ xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springf
                           <property name="customerDAO" ref="customerDA"></property>
                     </bean>
                     
+                    <bean id="loginController" class="com.spring.manage.controller.LoginController">
+                          <property name="customerService" ref="customerService"></property>
+                    </bean>
+                    
                     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
                           <property name="prefix" value="/WEB-INF/jsp/"></property>
                           <property name="suffix" value=".jsp"></property>
                     </bean>
+                    <mvc:annotation-driven/>
                     
                     </beans>
