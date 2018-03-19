@@ -24,6 +24,27 @@ xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springf
                           <property name="customerService" ref="customerService"></property>
                     </bean>
                     
+                    <bean id="shipDao" class="com.spring.manage.dao.ShipDAOImpl">
+                          <property name="dbUtil" ref="d"></property>
+                    </bean>
+                    
+                    <bean id="shipService" class="com.spring.manage.service.ShipServiceImpl">
+                          <property name="shipDAO" ref="shipDao"></property>
+                    </bean>
+                    
+                    <bean id="routeDao" class="com.spring.manage.dao.RouteDAOImpl">
+                          <property name="dbUtil" ref="d"></property>
+                    </bean>
+                    
+                    <bean id="routeService" class="com.spring.manage.service.RouteServiceImpl">
+                          <property name="routeDAO" ref="routeDao"></property>
+                    </bean>
+                    
+                    <bean id="adminController" class="com.spring.manage.controller.AdminController">
+                          <property name="shipService" ref="shipService"></property>
+                          <property name="routeService" ref="routeService"></property>
+                    </bean>
+                    
                     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
                           <property name="prefix" value="/WEB-INF/jsp/"></property>
                           <property name="suffix" value=".jsp"></property>

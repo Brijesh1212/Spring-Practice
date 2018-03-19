@@ -24,11 +24,11 @@
 </head>
 <body>
 <form:form action="login" >
-<div>${message}</div>
+<div style="color: red;">${message}</div>
    <form:hidden path="id"/>
    <form:input path="email" id="email"/>
    <div id="error1" style="color: red"></div>
-   <form:input path="password" id="password"/>
+   <form:input type="password" path="password" id="password"/>
    <div id="error2" style="color: red"></div>
    <input type="submit" value="Login" onclick="return validate()">
 </form:form>

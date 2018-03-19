@@ -1,5 +1,6 @@
 package com.spring.manage.dao;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -34,6 +35,51 @@ public class CustomerDAOImpl implements CustomerDAO{
 		 return "SUCCSSESS";
 		}else {
 			return "FAILED";
+		}
+	}
+
+	@Override
+	public String loginCustomer(Credentials credentials) {
+		if(credentials!=null) {
+			Session session=dbUtil.getSessionFactory().getCurrentSession();
+			Transaction transaction=session.beginTransaction();
+			Query query=session.createQuery("from Credentials where email=:email and password=:password");
+			query.setParameter("email", credentials.getEmail());
+			query.setParameter("password", credentials.getPassword());
+			Credentials credentials2=(Credentials) query.uniqueResult();
+			transaction.commit();
+			if(credentials2!=null) {
+				return "SUCCESS";
+			}else {
+				return "FAIL";
+			}
+		}else {
+			return "FAIL";
+		}
+		
+	}
+
+	@Override
+	public Credentials getCredentialsByEmail(String email) {
+		Session session=dbUtil.getSessionFactory().getCurrentSession();
+		Transaction transaction=session.beginTransaction();
+		Query query=session.createQuery("from Credentials where email=:email");
+		query.setParameter("email", email);
+		Credentials credentials= (Credentials)query.uniqueResult();
+		transaction.commit();
+		return credentials;
+	}
+
+	@Override
+	public String updateCredentials(Credentials credentials) {
+		if(credentials!=null) {
+		Session session=dbUtil.getSessionFactory().getCurrentSession();
+		Transaction transaction=session.beginTransaction();
+		session.update(credentials);
+		transaction.commit();
+		return "SUCCESS";
+		}else {
+			return "FAIL";
 		}
 	}
 

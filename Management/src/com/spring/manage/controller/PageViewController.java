@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.manage.bean.Customer;
+import com.spring.manage.bean.Route;
+import com.spring.manage.bean.Schedule;
+import com.spring.manage.bean.Ship;
 
 @Controller
 public class PageViewController {
@@ -19,6 +22,32 @@ public class PageViewController {
 	@RequestMapping("/registration")
 	public ModelAndView registration() {
 		return new ModelAndView("registration","command",new Customer());
+	}
+	
+	@RequestMapping("/adminHome")
+	public ModelAndView adminHome() {
+		return new ModelAndView("adminHome");
+	}
+	
+	@RequestMapping("/changePassword")
+	public ModelAndView changePassword() {
+		return new ModelAndView("changePassword");
+	}
+	
+	@RequestMapping("/addShip")
+	public ModelAndView addShip() {
+		return new ModelAndView("addShip","command",new Ship());
+	}
+	
+	@RequestMapping("/addRoute")
+	public ModelAndView addRoute() {
+		return new ModelAndView("addRoute","command",new Route());
+	}
+	
+	@RequestMapping("/addSchedule")
+	public ModelAndView addSchedule() {
+		System.out.println("Sending Schedule");
+		return new ModelAndView("addSchedule","command",new Schedule());
 	}
 	
 }

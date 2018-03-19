@@ -141,7 +141,6 @@ public class LoginController {
 					return new ModelAndView("changePassword", "command", new CredentialsBean());
 				}
 			}
-			
 		}else{
 			model.addAttribute("failed", "Old password is incorrect");
 			return new ModelAndView("changePassword", "command", new CredentialsBean());

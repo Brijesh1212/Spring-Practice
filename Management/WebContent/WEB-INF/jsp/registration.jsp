@@ -14,7 +14,7 @@
    <form:input path="firstName" placeholder="f-name" /><br>
     <form:input path="lastName" placeholder="l-name" /><br>
     <form:input path="email" placeholder="email" /><br>
-    <form:input path="password" placeholder="password" /><br>
+    <form:input type="password" path="password" placeholder="password" /><br>
     <form:input path="address" placeholder="address" /><br>
    <input class="form-control" type="submit" value="Login" onclick="return validate()"/>
 </form:form>
