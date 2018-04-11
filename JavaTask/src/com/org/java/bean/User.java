@@ -19,16 +19,20 @@ public class User {
 	private String userName;
 	
 	@Column
+	private String email;
+	
+	@Column
 	private String password;
 	
 	@Column
 	private String address;
     
-	public User(String userName, String password, String address) {
+	public User(String userName, String password, String address,String email) {
 		super();
 		this.userName = userName;
 		this.password = password;
 		this.address = address;
+		this.email=email;
 	}
     
 	public User() {
@@ -37,6 +41,14 @@ public class User {
 
 	public Integer getUserId() {
 		return userId;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public void setUserId(Integer userId) {
