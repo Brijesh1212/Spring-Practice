@@ -11,10 +11,10 @@ import com.spring.manage.util.DBUtil;
 
 public class ShipDAOImpl implements ShipDAO {
 	
-	static Session session;
+	/*static Session session;
 	static {
 		session = new DBUtil().getSessionFactory().openSession();
-	}
+	}*/
 	
 	DBUtil dbUtil;
 	
@@ -48,7 +48,8 @@ public class ShipDAOImpl implements ShipDAO {
 	@Override
 	public ArrayList<Ship> getAllShip() {
 		System.out.println("In Get all ship");
-		//Session session= dbUtil.getSessionFactory().openSession();
+		Session session= dbUtil.getSessionFactory().openSession();
+		//session.clear();
 		Transaction transaction=session.beginTransaction();
 		ArrayList<Ship> l= (ArrayList<Ship>) session.createQuery("from Ship").list();
 		transaction.commit();
@@ -56,9 +57,12 @@ public class ShipDAOImpl implements ShipDAO {
 	}
 
 	@Override
-	public String getShipById(Ship ship) {
-		// TODO Auto-generated method stub
-		return null;
+	public Ship getShipById(Ship ship) {
+		Session session=dbUtil.getSessionFactory().getCurrentSession();
+		Transaction transaction=session.beginTransaction();
+		Ship ship2= (Ship) session.load(Ship.class, ship.getId());
+		transaction.commit();
+		return ship2;
 	}
 
 	@Override

@@ -38,8 +38,7 @@ public class RouteServiceImpl implements RouteService{
 
 	@Override
 	public Route getRouteById(Route route) {
-		// TODO Auto-generated method stub
-		return null;
+		return routeDAO.getRouteById(route);
 	}
 
 }

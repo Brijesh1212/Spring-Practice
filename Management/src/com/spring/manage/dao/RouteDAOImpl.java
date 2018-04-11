@@ -50,8 +50,11 @@ public class RouteDAOImpl implements RouteDAO{
 
 	@Override
 	public Route getRouteById(Route route) {
-		// TODO Auto-generated method stub
-		return null;
+		Session session=dbUtil.getSessionFactory().getCurrentSession();
+		Transaction transaction=session.beginTransaction();
+		Route route2= (Route) session.load(Route.class, route.getId());
+		transaction.commit();
+		return route2;
 	}
 
 }

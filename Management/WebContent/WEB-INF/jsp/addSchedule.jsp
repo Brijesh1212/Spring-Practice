@@ -1,3 +1,4 @@
+<%@page import="com.spring.manage.controller.AdminController"%>
 <%@page import="com.spring.manage.dao.ShipDAOImpl"%>
 <%@page import="com.spring.manage.dao.ShipDAO"%>
 <%@page import="com.spring.manage.service.RouteServiceImpl"%>
@@ -19,38 +20,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-ShipDAO shipService=new ShipDAOImpl();
-RouteDAOImpl routeService=new RouteDAOImpl();
-System.out.println("Ship: "+routeService+" : "+shipService+" : "+shipService.getAllShip());
-ArrayList<Ship> l=shipService.getAllShip();
-ArrayList<Route> r=routeService.getRoutes();
-%>
 <div>${message}</div>
-<form:form>
-    <form:input path="id" type="hidden"/>
-    <form:select path="shipId">
-    <form:option value="">Select Ship</form:option>
-    <%
-    for(Ship s:l){
-    	%>
-    	    <form:option value="<%=s.getClass()%>"><%=s.getName() %></form:option>
-    	<%
-    }
-    %>
-    </form:select>
-    <form:select path="routeId">
-    <form:option value="">Select Route</form:option>
-    <%
-    for(Route ro:r){
-    %>
-    	    <form:option value="<%=ro.getClass()%>">S: <%=ro.getSource() %> D: <%=ro.getDestination() %></form:option>
-    	<%
-    	}
-    	%>
-    </form:select>
-    <form:input path="fare" placeholder="Fare"/>
+<form action="scheduleDetails" method="post">
+    <select name="shipId" >
+    <option value="">Select Ship</option>
+    <c:forEach items="${shipList}" var="shipList">
+    	    <option value="${shipList.id}">${shipList.name}</option>
+    </c:forEach>
+    </select><br>
+    <select name="routeId">
+    <option value="">Select Route</option>
+    <c:forEach items="${routeList}" var="routeList">
+    	    <option value="${routeList.id}">S: ${routeList.source} D: ${routeList.destination}</option>
+    </c:forEach>
+    </select><br>
+    <input name="fare" placeholder="Fare"/><br>
     <input type="submit" value="Save">
-</form:form>
+</form>
 </body>
 </html>

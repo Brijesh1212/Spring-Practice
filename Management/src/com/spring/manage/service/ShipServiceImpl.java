@@ -33,14 +33,12 @@ public class ShipServiceImpl implements ShipService {
 
 	@Override
 	public ArrayList<Ship> getAllShip() {
-		System.out.println("In servce getship : ");
-		return new ArrayList<>();
+		return shipDAO.getAllShip();
 	}
 
 	@Override
-	public String getShipById(Ship ship) {
-		// TODO Auto-generated method stub
-		return null;
+	public Ship getShipById(Ship ship) {
+		return shipDAO.getShipById(ship);
 	}
 
 	@Override

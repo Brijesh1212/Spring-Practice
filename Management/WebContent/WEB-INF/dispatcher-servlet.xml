@@ -40,10 +40,20 @@ xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springf
                           <property name="routeDAO" ref="routeDao"></property>
                     </bean>
                     
+                    <bean id="scheduleDAO" class="com.spring.manage.dao.ScheduleDAOImpl">
+                          <property name="dbUtil" ref="d"></property>
+                    </bean>
+                    
+                    <bean id="scheduleServ" class="com.spring.manage.service.ScheduleServiceImpl">
+                          <property name="scheduleDAO" ref="scheduleDAO"></property>
+                    </bean>
+                    
                     <bean id="adminController" class="com.spring.manage.controller.AdminController">
                           <property name="shipService" ref="shipService"></property>
                           <property name="routeService" ref="routeService"></property>
+                          <property name="scheduleService" ref="scheduleServ"></property>
                     </bean>
+                    
                     
                     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
                           <property name="prefix" value="/WEB-INF/jsp/"></property>

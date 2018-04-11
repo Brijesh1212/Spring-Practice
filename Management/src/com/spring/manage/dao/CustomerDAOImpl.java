@@ -3,7 +3,6 @@ package com.spring.manage.dao;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import com.spring.manage.bean.Credentials;
 import com.spring.manage.bean.Customer;
 import com.spring.manage.util.DBUtil;
@@ -32,7 +31,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 		 session.save(customer);
 		 session.save(credentials);
 		 transaction.commit();
-		 return "SUCCSSESS";
+		 return "SUCCESS";
 		}else {
 			return "FAILED";
 		}

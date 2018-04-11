@@ -15,7 +15,7 @@ public String addShip(Ship ship);
 	
 	public ArrayList<Ship> getAllShip();
 	
-	public String getShipById(Ship ship);
+	public Ship getShipById(Ship ship);
 	
 	public String getShipByRoute(Route route);
 
