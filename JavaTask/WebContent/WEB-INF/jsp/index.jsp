@@ -72,7 +72,7 @@ Date of task
     	    <div><div style="font-weight: bold;background-color: white;padding: 5px"> Start of task</div> <div style="background-color: green;padding: 15px">${l.startTime}</div></div>
     	    <div><div style="font-weight: bold;background-color: white;padding: 5px">End of task </div><div style="background-color: green;padding: 15px">${l.endTime}</div></div>
     	  <div><div style="font-weight: bold;background-color: white;padding: 5px">Status  </div><div style="background-color: green;padding: 15px"> ${l.status}</div></div>
-    	  <div><a href="/JavaTask/editTask" style="text-decoration: none;">Edit</a></div>
+    	  <div><a href="/JavaTask/editTask?id=${l.id }" style="text-decoration: none;">Edit</a></div>
     	  <div><a href="/JavaTask/deleteTask" style="text-decoration: none;">Delete</a></div> 
     </div>
     </div><br><br><br>

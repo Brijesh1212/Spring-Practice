@@ -68,8 +68,17 @@ public class TaskDAOImpl implements TaskDAO{
 
 	@Override
 	public Task getTaskById(Task task) {
-		// TODO Auto-generated method stub
-		return null;
+		Task task2=null;
+		try {
+			//session.clear();
+			session= dbUtil.getSessionFactory().getCurrentSession();
+			Transaction transaction=session.beginTransaction();
+			task2=(Task)session.load(Task.class, task.getId());
+			transaction.commit();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		return task2;
 	}
 
 	@Override

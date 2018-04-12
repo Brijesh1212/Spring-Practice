@@ -45,7 +45,7 @@
 					<input type="submit" value="Login">
 				</div>
 			</form>
-			<div style="color: white;">${message}</div>
+			<div style="color: white;"> ${message}</div>
 		</div>
 <!--//form-ends-here-->
 </div>

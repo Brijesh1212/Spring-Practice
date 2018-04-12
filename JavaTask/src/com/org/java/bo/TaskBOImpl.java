@@ -45,8 +45,8 @@ public class TaskBOImpl implements TaskBO{
 
 	@Override
 	public Task getTaskById(Task task) {
-		// TODO Auto-generated method stub
-		return null;
+		Task task2=taskDAO.getTaskById(task);
+		return task2;
 	}
 
 	@Override

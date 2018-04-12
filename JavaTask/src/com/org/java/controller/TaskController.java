@@ -71,4 +71,27 @@ public class TaskController {
 		
 	}
 	
+	@RequestMapping("editTask")
+	public ModelAndView editTask(Model model,@RequestParam("id") String id) {
+		//SimpleDateFormat sdf=new SimpleDateFormat("HH:mm a");
+		//List<Task> l=null;
+		//String message=null;
+		//System.out.println("in add task");
+		Task task=new Task();
+		Task task2=null;
+		task.setId(Integer.parseInt(id));
+		try {
+			 task2=taskBO.getTaskById(task);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			model.addAttribute("id", task2.getId());
+			model.addAttribute("stime", task2.getStartTime());
+			model.addAttribute("etime", task2.getEndTime());
+			model.addAttribute("obj", task2.getObjectiveOfTheTask());
+			model.addAttribute("st", task2.getStatus());
+			model.addAttribute("d", task2.getTaskDate());
+			return new ModelAndView("edit");
+		
+	}
 }

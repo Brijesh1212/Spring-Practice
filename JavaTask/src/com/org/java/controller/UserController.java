@@ -44,19 +44,25 @@ public class UserController {
 	@RequestMapping("/registerUser")
 	public ModelAndView addUser(@ModelAttribute("user") User user,Model model) {
 		String message="";
-		System.out.println(user.getUserName()+" : "+userBO);
+		//System.out.println(user.getUserName()+" : "+userBO);
 		try {
 			String returnString=userBO.addUser(user);
 			if(returnString.equals("SUCCESS")){
 				message="User added";
+				model.addAttribute("message", message);
+				return new ModelAndView("login","command",new User());
 			}else{
 				message="Failed to added user please try again";
+				model.addAttribute("message", message);
+				return new ModelAndView("login","command",new User());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			model.addAttribute("message", "Create Database \"javatask\"");
+			System.out.println(user.getUserName()+" : "+userBO);
+			return new ModelAndView("login","command",new User());
 		}
-		model.addAttribute("message", message);
-		return new ModelAndView("login","command",new User());
+		
 	}
 	
 	@RequestMapping("/loginUser")
