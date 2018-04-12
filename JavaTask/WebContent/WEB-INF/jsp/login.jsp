@@ -25,27 +25,27 @@
 <div class="main-agileits">
 <!--form-stars-here-->
 		<div class="form-w3-agile">
-			<h2>Credit login form</h2>
-			<form action="/loginUser" method="post">
+			<h2>Login form</h2>
+			<form action="loginUser" method="post">
 				<div class="form-sub-w3">
-					<input type="text" name="Username" placeholder="Email " required="" />
+					<input type="text" name="email" placeholder="Email " required="" />
 				<div class="icon-w3">
 					<i class="fa fa-user" aria-hidden="true"></i>
 				</div>
 				</div>
 				<div class="form-sub-w3">
-					<input type="password" name="Password" placeholder="Password" required="" />
+					<input type="password" name="password" placeholder="Password" required="" />
 				<div class="icon-w3">
 					<i class="fa fa-unlock-alt" aria-hidden="true"></i>
 				</div>
 				</div>
-				<p class="p-bottom-w3ls">Are you new to eBanking?<a class="w3_play_icon1" href="#small-dialog1">  Register here</a></p>
+				<p class="p-bottom-w3ls">Wanna track all your task?<a class="w3_play_icon1" href="#small-dialog1">  Register here</a></p>
 				
 				<div class="submit-w3l">
 					<input type="submit" value="Login">
 				</div>
 			</form>
-			<div>${message}</div>
+			<div style="color: white;">${message}</div>
 		</div>
 <!--//form-ends-here-->
 </div>

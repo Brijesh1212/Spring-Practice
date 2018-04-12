@@ -3,7 +3,6 @@ if (document.getElementById('name').value == "" || document.getElementById('emai
 alert("Fill All Fields !");
 } else {
 document.getElementById('form').submit();
-alert("Form Submitted Successfully...");
 }
 }
 //Function To Display Popup

@@ -21,6 +21,23 @@ xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springf
                          <property name="userDAO" ref="userDAOImpl"></property>
                     </bean>
                     
+                    <bean id="userController" class="com.org.java.controller.UserController">
+                         <property name="userBO" ref="userBOImpl"></property>
+                         <property name="taskBO" ref="taskBOImpl"></property>
+                    </bean>
+                    
+                    <bean id="taskDAOImpl" class="com.org.java.dao.TaskDAOImpl">
+                         <property name="dbUtil" ref="d"></property>
+                    </bean>
+                    
+                    <bean id="taskBOImpl" class="com.org.java.bo.TaskBOImpl">
+                         <property name="taskDAO" ref="taskDAOImpl"></property>
+                    </bean>
+                    
+                    <bean id="taskController" class="com.org.java.controller.TaskController">
+                         <property name="taskBO" ref="taskBOImpl"></property>
+                    </bean>
+                    
                     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
                           <property name="prefix" value="/WEB-INF/jsp/"></property>
                           <property name="suffix" value=".jsp"></property>

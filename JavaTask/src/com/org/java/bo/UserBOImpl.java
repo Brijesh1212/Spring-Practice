@@ -16,10 +16,22 @@ public class UserBOImpl implements UserBO{
 		String returnString=null;
 		try {
 			returnString=userDAO.addUser(user);
+			System.out.println("in user bo"+returnString);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return returnString;
+	}
+
+	@Override
+	public User getUserByEmailAndPassword(String email, String password) {
+		User user=null;
+		try {
+			user=userDAO.getUserByEmailAndPassword(email, password);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return user;
 	}
 
 }

@@ -22,7 +22,7 @@ public class TaskDAOImpl implements TaskDAO{
 	public String createNewTask(Task task) {
 		String returnString=null;
 		try {
-		session.clear();
+		//session.clear();
 		session= dbUtil.getSessionFactory().getCurrentSession();
 		Transaction transaction=session.beginTransaction();
 		session.save(task);
@@ -50,10 +50,20 @@ public class TaskDAOImpl implements TaskDAO{
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Task> getAllTask() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Task> l=null;
+		try {
+			//session.clear();
+			session= dbUtil.getSessionFactory().getCurrentSession();
+			Transaction transaction=session.beginTransaction();
+			l=session.createQuery("from Task").list();
+			transaction.commit();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		return l;
 	}
 
 	@Override

@@ -18,13 +18,13 @@ public class Task {
 	private Integer id;
 	
 	@Column
-	private Date taskDate;
+	private String taskDate;
 	
 	@Column
-    private Date startTime;
+    private String startTime;
 	
 	@Column
-	private Date endTime;
+	private String endTime;
 	
 	@Column
 	private String objectiveOfTheTask;
@@ -35,7 +35,7 @@ public class Task {
 		super();
 	}
 
-	public Task(Date taskDate, Date startTime, Date endTime, String objectiveOfTheTask,String status) {
+	public Task(String taskDate, String startTime, String endTime, String objectiveOfTheTask,String status) {
 		super();
 		this.taskDate = taskDate;
 		this.startTime = startTime;
@@ -61,27 +61,27 @@ public class Task {
 		this.id = id;
 	}
 
-	public Date getTaskDate() {
+	public String getTaskDate() {
 		return taskDate;
 	}
 
-	public void setTaskDate(Date taskDate) {
+	public void setTaskDate(String taskDate) {
 		this.taskDate = taskDate;
 	}
 
-	public Date getStartTime() {
+	public String getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(Date startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
 
-	public Date getEndTime() {
+	public String getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(Date endTime) {
+	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
 

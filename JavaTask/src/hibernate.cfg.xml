@@ -11,5 +11,6 @@
 			<property name="hibernate.show_sql">true</property>
 			<property name="hibernate.current_session_context_class">thread</property>
 			<mapping class="com.org.java.bean.Task"/>
+			<mapping class="com.org.java.bean.User"/>
    </session-factory>
 </hibernate-configuration>
