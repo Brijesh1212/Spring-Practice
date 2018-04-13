@@ -37,23 +37,27 @@ try {
 %>
 
 <div id="popupContact">
-<form action="addTask" id="form" method="post" name="form">
-<input id="name" name="stime"  type="hidden" value="${id }">
+<form action="updateTask" id="form" method="post" name="form">
+<input id="name" name="id"  type="hidden" value="${task.id }">
 <img id="close" src="images/3.png" onclick ="div_hide()">
 <h2>Update Task</h2>
 <hr>
 Start Time
-<input id="name" name="stime"  type="text" value="${stime }"><br>
+<input id="name" name="stime"  type="text" value="${task.startTime }"><br>
 End Time
-<input id="email" name="etime"  type="text" value="${etime }">
+<input id="email" name="etime"  type="text" value="${task.endTime }">
 <br>
 Date of task
-<input id="email" name="date"  type="text" value="${st }"><br>
+<input id="email" name="date"  type="text" value="${task.taskDate }"><br>
 Status
-<input id="email" name="date"  type="text" value="${d }"><br>
+<select name="status">
+<option value="New">New</option>
+<option value="Started">Started</option>
+<option value="Completed">Completed</option>
+</select>
 Objective
 <textarea id="msg" name="objective"  >${obj }</textarea>
-<a href="javascript:%20check_empty()" id="submit">Send</a>
+<input type="submit" value="Update">
 </form>
 </div>
 </body>

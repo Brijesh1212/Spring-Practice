@@ -85,13 +85,66 @@ public class TaskController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-			model.addAttribute("id", task2.getId());
-			model.addAttribute("stime", task2.getStartTime());
-			model.addAttribute("etime", task2.getEndTime());
-			model.addAttribute("obj", task2.getObjectiveOfTheTask());
-			model.addAttribute("st", task2.getStatus());
-			model.addAttribute("d", task2.getTaskDate());
+			model.addAttribute("task", task2);
 			return new ModelAndView("edit");
 		
 	}
+	
+	@RequestMapping("updateTask")
+	public ModelAndView updateTask(Model model,@RequestParam("id") String id,@RequestParam("stime") String stime,@RequestParam("etime") String etime,@RequestParam("objective") String objective,@RequestParam("status") String status,@RequestParam("date") String date) {
+		String returnMessage=null;
+		Task task=new Task(date, stime, etime, objective, status);
+		task.setId(Integer.parseInt(id));
+		try {
+			returnMessage=taskBO.updateTask(task);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			if(returnMessage.equals("SUCCESS")) {
+				List<Task> l=taskBO.getAllTask();
+				ArrayList<Task> al=new ArrayList<>();
+				for (Task task2 : l) {
+					al.add(task2);
+				}
+				model.addAttribute("l", al);
+				model.addAttribute("message", "Task Updated");
+			return new ModelAndView("index");
+			}else{
+				model.addAttribute("message", "Task Update failed try again");
+				return new ModelAndView("index");
+			}
+	}
+	
+	@RequestMapping("deleteTask")
+	public ModelAndView deleteTask(Model model,@RequestParam("id") String id) {
+		String returnMessage=null;
+		Task task=new Task();
+		task.setId(Integer.parseInt(id));
+		try {
+			returnMessage=taskBO.deleteTask(task);
+			System.out.println(returnMessage+" rs");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			if(returnMessage.equals("SUCCESS")) {
+				List<Task> l=taskBO.getAllTask();
+				ArrayList<Task> al=new ArrayList<>();
+				for (Task task2 : l) {
+					al.add(task2);
+				}
+				model.addAttribute("l", al);
+				model.addAttribute("message", "Task Deleted");
+			return new ModelAndView("index");
+			}else{
+				List<Task> l=taskBO.getAllTask();
+				ArrayList<Task> al=new ArrayList<>();
+				for (Task task2 : l) {
+					al.add(task2);
+				}
+				model.addAttribute("l", al);
+				model.addAttribute("message", "Can not delete completed tasks");
+				return new ModelAndView("index");
+			}
+	}
+	
 }

@@ -27,14 +27,13 @@ public class TaskBOImpl implements TaskBO{
 
 	@Override
 	public String updateTask(Task task) {
-		// TODO Auto-generated method stub
-		return null;
+		return taskDAO.updateTask(task);
 	}
 
 	@Override
 	public String deleteTask(Task task) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("in delete bo");
+		return taskDAO.deleteTask(task);
 	}
 
 	@Override

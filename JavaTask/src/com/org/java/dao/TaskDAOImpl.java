@@ -3,8 +3,11 @@ package com.org.java.dao;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import com.org.java.bean.Task;
 import com.org.java.util.DBUtil;
@@ -40,14 +43,45 @@ public class TaskDAOImpl implements TaskDAO{
 
 	@Override
 	public String updateTask(Task task) {
-		// TODO Auto-generated method stub
-		return null;
+		String returnString=null;
+		try {
+		//session.clear();
+		session= dbUtil.getSessionFactory().getCurrentSession();
+		Transaction transaction=session.beginTransaction();
+		session.update(task);
+		transaction.commit();
+		if(transaction.wasCommitted()) {
+			returnString="SUCCESS";
+		}else {
+			returnString="FAILED";
+		}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return returnString;
 	}
 
 	@Override
 	public String deleteTask(Task task) {
-		// TODO Auto-generated method stub
-		return null;
+		String returnString=null;
+		System.out.println("in delete dao");
+		try {
+		Session session1= dbUtil.getSessionFactory().openSession();
+		Transaction transaction=session1.beginTransaction();
+		Query qry = session1.createQuery("delete from Task t where t.id=:i and t.status !=:s");
+				         qry.setParameter("i",task.getId());
+				         qry.setParameter("s", "completed");
+				         int i = qry.executeUpdate();
+		System.out.println("in delete dao q");
+		if(i>0) {
+			returnString="SUCCESS";
+		}else {
+			returnString="FAILED";
+		}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return returnString;
 	}
 
 	@SuppressWarnings("unchecked")
