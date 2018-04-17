@@ -157,4 +157,20 @@ public class TaskController {
 			}
 	}
 	
+	@RequestMapping("searchTask")
+	public ModelAndView searchTask(Model model,@RequestParam("q") String q) {
+		//String returnMessage=null;
+		Task task=new Task();
+		Task task2=new Task();
+		task.setObjectiveOfTheTask(q);
+		try {
+			task2=taskBO.getTaskByObjective(task);
+			//System.out.println(returnMessage+" rs");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+				model.addAttribute("l", task2);
+			return new ModelAndView("index");
+	}
+	
 }

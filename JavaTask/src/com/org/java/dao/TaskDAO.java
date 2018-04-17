@@ -24,5 +24,7 @@ public interface TaskDAO {
 	public Task getTaskByEndTime(Date date);
 	
 	public String changeStatus(Task task);
+	
+	public Task getTaskByObjective(Task task);
 
 }

@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import com.org.java.bean.Task;
+import com.org.java.bean.User;
 import com.org.java.util.DBUtil;
 
 public class TaskDAOImpl implements TaskDAO{
@@ -137,6 +138,15 @@ public class TaskDAOImpl implements TaskDAO{
 	public String changeStatus(Task task) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Task getTaskByObjective(Task task) {
+		session=dbUtil.getSessionFactory().getCurrentSession();
+		Transaction transaction=session.beginTransaction();
+		Criteria crit = session.createCriteria(User.class);
+		crit.add( Restrictions.eq("objectiveOfTheTask", task.getObjectiveOfTheTask()));
+		return (Task) crit.list().get(0);
 	}
 
 }

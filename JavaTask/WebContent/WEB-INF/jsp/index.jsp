@@ -17,6 +17,17 @@
 <title>Task</title>
 <link href="<c:url value="/resources/css/elements.css" />" rel="stylesheet">
 <script src="<c:url value="/resources/js/my_js.js" />"></script>
+<script type="text/javascript">
+function validationSearch() {
+	var q=document.getElementById("q").value;
+	if(q==null||q.length==0){
+		alert("Please enter query");
+		return false;
+	}else{
+		return true;
+	}
+}
+</script>
 </head>
 <body id="body" >
 <%
@@ -60,7 +71,12 @@ Date of task
 </div>
 <button id="logout"> <a href="/JavaTask/logout" >Logout</a></button>
 
-<div><input type="text" placeholder="Filter" id="filter"></div>
+<div>
+<form action="searchTask" method="post" onsubmit="return validationSearch()">
+<input type="text" placeholder="Enter task objective" id="filter">
+<input type="submit" name="q" value="Search" style="position: relative;top: 80px;left: 320px;background-color: orange;height: 40px;width: 90px;border-radius: 20px;cursor: pointer;">
+</form>
+</div>
 
 <div id="taskDetails">
 <div>
@@ -68,9 +84,9 @@ Date of task
   <c:forEach items="${l}" var="l">
  <div style="background-color: gray;"> 
   <div style="padding: 5px; ">
-    	   <div ><div style="font-weight: bold;background-color: white;padding: 5px">objective of task</div> <div style="background-color: green;padding: 15px"> ${l.objectiveOfTheTask}</div> </div>
-    	    <div><div style="font-weight: bold;background-color: white;padding: 5px"> Start of task</div> <div style="background-color: green;padding: 15px">${l.startTime}</div></div>
-    	    <div><div style="font-weight: bold;background-color: white;padding: 5px">End of task </div><div style="background-color: green;padding: 15px">${l.endTime}</div></div>
+    	   <div ><div style="font-weight: bold;background-color: white;padding: 5px">Objective of task</div> <div style="background-color: green;padding: 15px"> ${l.objectiveOfTheTask}</div> </div>
+    	    <div><div style="font-weight: bold;background-color: white;padding: 5px"> Start Time</div> <div style="background-color: green;padding: 15px">${l.startTime}</div></div>
+    	    <div><div style="font-weight: bold;background-color: white;padding: 5px">End Time </div><div style="background-color: green;padding: 15px">${l.endTime}</div></div>
     	  <div><div style="font-weight: bold;background-color: white;padding: 5px">Status  </div><div style="background-color: green;padding: 15px"> ${l.status}</div></div>
     	  <div><a href="/JavaTask/editTask?id=${l.id }" style="text-decoration: none;">Edit</a></div>
     	  <div><a href="/JavaTask/deleteTask?id=${l.id }" style="text-decoration: none;">Delete</a></div> 

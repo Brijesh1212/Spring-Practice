@@ -78,4 +78,9 @@ public class TaskBOImpl implements TaskBO{
 		return null;
 	}
 
+	@Override
+	public Task getTaskByObjective(Task task) {
+		return taskDAO.getTaskByObjective(task);
+	}
+
 }
