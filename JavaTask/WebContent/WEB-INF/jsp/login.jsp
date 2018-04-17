@@ -19,6 +19,45 @@
 <!-- web font -->
 <link href="//fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet">
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+<script type="text/javascript">
+function validation() {
+		var email=document.getElementById("email").value;
+		var password=document.getElementById("password").value;
+	if(email==null||email.length==0){
+		alert("Please enter email id");
+		return false;
+	}else if(password==null||password.length==0){
+		alert("Please enter password");
+		return false;
+	}else{
+		return true;
+	}
+}
+
+function validationReg() {
+	var email=document.getElementById("email").value;
+	var userName=document.getElementById("userName").value;
+	var address=document.getElementById("address").value;
+	var password=document.getElementById("password").value;
+if(userName==null||userName.length==0){
+	alert("Please enter UserName");
+	return false;
+}else if(email==null||email.length==0){
+	alert("Please enter email id");
+	return false;
+}else if(password==null||password.length==0){
+	alert("Please enter password");
+	return false;
+}else if(address==null||address.length==0){
+	alert("Please enter address");
+	return false;
+}else{
+	return true;
+}
+}
+</script>
+
 </head>
 <body>
 <h1>Login Please</h1>
@@ -26,15 +65,15 @@
 <!--form-stars-here-->
 		<div class="form-w3-agile">
 			<h2>Login form</h2>
-			<form action="loginUser" method="post">
+			<form action="loginUser" method="post" onsubmit="return validation()">
 				<div class="form-sub-w3">
-					<input type="text" name="email" placeholder="Email " required="" />
+					<input type="text" name="email" id="email" placeholder="Email " />
 				<div class="icon-w3">
 					<i class="fa fa-user" aria-hidden="true"></i>
 				</div>
 				</div>
 				<div class="form-sub-w3">
-					<input type="password" name="password" placeholder="Password" required="" />
+					<input type="password" name="password" id="password" placeholder="Password" />
 				<div class="icon-w3">
 					<i class="fa fa-unlock-alt" aria-hidden="true"></i>
 				</div>
@@ -53,37 +92,37 @@
 					<div class="contact-form1">
 										<div class="contact-w3-agileits">
 										<h3>Register Form</h3>
-											<form:form action="registerUser" method="post">
+											<form:form action="registerUser" method="post" onsubmit="return validationReg()">
 											    <form:hidden path="userId"/>
 												<div class="form-sub-w3ls">
-													<form:input path="userName" placeholder="UserName" required=""/>
+													<form:input path="userName" placeholder="UserName" id="userName"/>
 													<div class="icon-agile">
 														<i class="fa fa-user" aria-hidden="true"></i>
 													</div>
 												</div>
 												<div class="form-sub-w3ls">
-													<form:input placeholder="Email" class="mail" path="email" required=""/>
+													<form:input placeholder="Email" class="mail" path="email" id="email"/>
 													<div class="icon-agile">
 														<i class="fa fa-envelope-o" aria-hidden="true"></i>
 													</div>
 												</div>
 												<div class="form-sub-w3ls">
-													<form:input placeholder="Password"  path="password" required=""/>
+													<form:input placeholder="Password"  path="password" id="password"/>
 													<div class="icon-agile">
 														<i class="fa fa-unlock-alt" aria-hidden="true"></i>
 													</div>
 												</div>
 												<div class="form-sub-w3ls">
-													<form:input placeholder="Address"  path="address" required=""/>
+													<form:input placeholder="Address"  path="address" id="address"/>
 													<div class="icon-agile">
 														<i class="fa fa-unlock-alt" aria-hidden="true"></i>
 													</div>
 												</div>
-											</div>
-										<div class="submit-w3l">
+												<div class="submit-w3l">
 											<input type="submit" value="Register"/>
 										</div>
-										</form:form>
+												</form:form>
+											</div>
 					</div>	
 				</div>
 <!-- copyright -->

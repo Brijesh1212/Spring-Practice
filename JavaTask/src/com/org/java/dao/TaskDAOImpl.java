@@ -99,19 +99,19 @@ public class TaskDAOImpl implements TaskDAO{
 			}
 		return l;
 	}
-
 	@Override
 	public Task getTaskById(Task task) {
 		Task task2=null;
 		try {
 			//session.clear();
-			session= dbUtil.getSessionFactory().getCurrentSession();
-			Transaction transaction=session.beginTransaction();
-			task2=(Task)session.load(Task.class, task.getId());
+			Session se= dbUtil.getSessionFactory().getCurrentSession();
+			Transaction transaction=se.beginTransaction();
+			task2=(Task)se.get(Task.class, task.getId());
 			transaction.commit();
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
+		// System.out.println("Task : "+task2.getObjectiveOfTheTask()+" "+task2.getStartTime()+" "+task2.getEndTime()+" "+task2.getStatus()+" "+task2.getTaskDate()+" "+task2.getId());
 		return task2;
 	}
 

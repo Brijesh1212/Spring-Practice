@@ -17,7 +17,7 @@
 <title>Task</title>
 <link href="<c:url value="/resources/css/elements.css" />" rel="stylesheet">
 </head>
-<body id="body" >
+<body id="body" style="overflow: scroll;">
 <%
 Key key= (Key)session.getAttribute("key");
 String userName=(String)session.getAttribute("userName");
@@ -54,10 +54,10 @@ Status
 <option value="New">New</option>
 <option value="Started">Started</option>
 <option value="Completed">Completed</option>
-</select>
-Objective
-<textarea id="msg" name="objective"  >${obj }</textarea>
-<input type="submit" value="Update">
+</select><br><br><br>
+Objective<br>
+<textarea id="msg" name="objective"  >${task.objectiveOfTheTask}</textarea>
+<input type="submit" value="Update" style="background-color: orange;height: 40px;width: 90px;cursor: pointer;position: relative;left: -60px;">
 </form>
 </div>
 </body>

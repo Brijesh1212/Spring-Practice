@@ -46,12 +46,12 @@ try {
 <h2>Add Task</h2>
 <hr>
 Start Time
-<input id="name" name="stime" placeholder="Name" type="time"><br>
+<input id="name" name="stime"  type="time"><br>
 End Time
-<input id="email" name="etime" placeholder="Email" type="time">
+<input id="email" name="etime" type="time">
 <br>
 Date of task
-<input id="email" name="date" placeholder="Email" type="date">
+<input id="email" name="date"  type="date">
 <textarea id="msg" name="objective" placeholder="Objective of task"></textarea>
 <a href="javascript:%20check_empty()" id="submit">Send</a>
 </form>

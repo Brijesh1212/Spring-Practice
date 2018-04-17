@@ -38,7 +38,13 @@ public class TaskBOImpl implements TaskBO{
 
 	@Override
 	public List<Task> getAllTask() {
-		List<Task> l= taskDAO.getAllTask();
+		List<Task> l=null;
+		try {
+			 l= taskDAO.getAllTask();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return l;
 	}
 

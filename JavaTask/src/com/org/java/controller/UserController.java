@@ -52,7 +52,7 @@ public class UserController {
 				model.addAttribute("message", message);
 				return new ModelAndView("login","command",new User());
 			}else{
-				message="Failed to added user please try again";
+				message="Failed to add user please try again";
 				model.addAttribute("message", message);
 				return new ModelAndView("login","command",new User());
 			}
