@@ -70,7 +70,6 @@ Date of task
 <!-- Popup Div Ends Here -->
 </div>
 <button id="logout"> <a href="/JavaTask/logout" >Logout</a></button>
-
 <div>
 <form action="searchTask" method="post" onsubmit="return validationSearch()">
 <input type="text" placeholder="Enter task objective" id="filter">
@@ -91,7 +90,7 @@ Date of task
     	  <div><a href="/JavaTask/editTask?id=${l.id }" style="text-decoration: none;">Edit</a></div>
     	  <div><a href="/JavaTask/deleteTask?id=${l.id }" style="text-decoration: none;">Delete</a></div> 
     </div>
-    </div><br><br><br>
+ </div><br><br><br>
     </c:forEach>
 </div>
 </div>
