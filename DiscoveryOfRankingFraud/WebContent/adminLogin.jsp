@@ -1,12 +1,9 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Discovery of ranking fraud for mobile apps</title>
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css'/>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
@@ -39,10 +36,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				 <div class="top-menu">
 				 	<span class="menu"> </span> 
 					<ul>
-						 <li><a class="active hvr-shutter-out-horizontal"href="index.html">Home</a></li>
+						 <li><a class="hvr-shutter-out-horizontal" href="index.html">Home</a></li>
 						 <li><a class="hvr-shutter-out-horizontal" href="appOwnerLogin.jsp">App Owner</a></li>
 						 <li><a class="hvr-shutter-out-horizontal" href="userLogin.jsp">User</a></li>
-						 <li><a class="hvr-shutter-out-horizontal" href="adminLogin.jsp">Admin</a></li>
+						 <li><a class="active hvr-shutter-out-horizontal" href="adminLogin.jsp">Admin</a></li>
 					 </ul>				 
 				 </div>	
 				 		 <div class="clearfix"> </div>	 
@@ -56,24 +53,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		 <!-- script-for-menu -->	 
 		 </div>	
 		 <div  class="banner-bottom">
-		 	<div class="col-md-6 banner-left">
-		 		<h1>MOBILE</h1>
-		 		<h2>APP</h2>
-		 		<h3>MOBILE<span>STORE</span></h3>
-		 		<p>Helps user to get only valid and non-malicious Application. </p>
-		 	</div>
-		 	<div class="col-md-6 banner-right">
-		 		<div class="app-img">
-		 			<img src="images/3333.png" class="img-responsive" alt=""/>
-		 		</div>
-		 	</div>
-		 	<div class="clearfix"> </div>
+		 	
 		 </div>
 	</div>
 </div>
 <!--/header-->
 <!--services-->
-
 <!--Footer-->
 <div style="height: 100px;background-color: gray">
 	
