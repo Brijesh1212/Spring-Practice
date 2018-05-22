@@ -79,7 +79,7 @@
 		 <div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
-				<form class="login100-form validate-form flex-sb flex-w">
+				<form class="login100-form validate-form flex-sb flex-w" action="appOwnerRegistrationBack.jsp" method="post">
 					<span class="login100-form-title p-b-32">
 						App Owner Registration 
 					</span>
@@ -89,6 +89,14 @@
 					</span>
 					<div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
 						<input class="input100" type="text" name="username" >
+						<span class="focus-input100"></span>
+					</div>
+					
+					<span class="txt1 p-b-11">
+						Email
+					</span>
+					<div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
+						<input class="input100" type="text" name="email" >
 						<span class="focus-input100"></span>
 					</div>
 					

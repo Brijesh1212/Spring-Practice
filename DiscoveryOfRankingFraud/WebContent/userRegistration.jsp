@@ -83,12 +83,20 @@
 					<span class="login100-form-title p-b-32">
 						User Registration 
 					</span>
-
+					
 					<span class="txt1 p-b-11">
 						Username
 					</span>
 					<div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
 						<input class="input100" type="text" name="username" >
+						<span class="focus-input100"></span>
+					</div>
+
+					<span class="txt1 p-b-11">
+						Email
+					</span>
+					<div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
+						<input class="input100" type="text" name="email" >
 						<span class="focus-input100"></span>
 					</div>
 					
