@@ -81,7 +81,7 @@
 			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
 				<form class="login100-form validate-form flex-sb flex-w">
 					<span class="login100-form-title p-b-32">
-						 App Owner Login
+						App Owner Registration 
 					</span>
 
 					<span class="txt1 p-b-11">
@@ -99,23 +99,58 @@
 						<span class="btn-show-pass">
 							<i class="fa fa-eye"></i>
 						</span>
-						<input class="input100" type="password" name="pass" >
+						<input class="input100" type="password" name="password" >
 						<span class="focus-input100"></span>
 					</div>
 					
+					<span class="txt1 p-b-11">
+						DOB
+					</span>
+					<div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
+						<input class="input100" type="date" name="dob" >
+						<span class="focus-input100"></span>
+					</div>
+					
+					<span class="txt1 p-b-11">
+						Gender
+					</span>
+					<div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
+						<select class="input100" type="date" name="gender" >
+						<option>Select Gender</option>
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+						</select>
+						<span class="focus-input100"></span>
+					</div>
+					
+					<span class="txt1 p-b-11">
+						Contact Number
+					</span>
+					<div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
+						<input class="input100" type="text" name="number" >
+						<span class="focus-input100"></span>
+					</div>
+					
+					<span class="txt1 p-b-11">
+						Address
+					</span>
+					<div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
+						<input class="input100" type="text" name="address" >
+						<span class="focus-input100"></span>
+					</div>
 					
 					<div class="flex-sb-m w-full p-b-48">
 
 						<div>
-							<a href="appOwnerRegistration.jsp" class="txt3">
-								Need an account?
+							<a href="appOwnerLogin.jsp" class="txt3">
+								Login?
 							</a>
 						</div>
 					</div>
 
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-							Login
+							Register
 						</button>
 					</div>
 
