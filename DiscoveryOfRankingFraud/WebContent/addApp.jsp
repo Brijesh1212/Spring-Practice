@@ -58,10 +58,10 @@
 				 <div class="top-menu">
 				 	<span class="menu"> </span> 
 					<ul>
-						 <li><a class="hvr-shutter-out-horizontal" href="index.html">Home</a></li>
-						 <li><a class="active hvr-shutter-out-horizontal" href="appOwnerLogin.jsp">App Owner</a></li>
-						 <li><a class="hvr-shutter-out-horizontal" href="userLogin.jsp">User</a></li>
-						 <li><a class="hvr-shutter-out-horizontal" href="adminLogin.jsp">Admin</a></li>
+						 <li><a class="hvr-shutter-out-horizontal" href="appOwnerHome.jsp">Home</a></li>
+						 <li><a class="active hvr-shutter-out-horizontal" href="addApp.jsp">Add New App</a></li>
+						 <li><a class="hvr-shutter-out-horizontal" href="viewApps.jsp">View Apps</a></li>
+						 <li><a class="hvr-shutter-out-horizontal" href="index.html">Logout</a></li>
 					 </ul>				 
 				 </div>	
 				 		 <div class="clearfix"> </div>	 
@@ -76,46 +76,56 @@
 		 </div>	
 		 <div  class="banner-bottom">
 		 
-		 <div class="limiter">
+<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
-				<form class="login100-form validate-form flex-sb flex-w" action="appOwnerLoginBack.jsp" method="post">
+				<form class="login100-form validate-form flex-sb flex-w" action="addAppBack.jsp" method="post" enctype="multipart/form-data">
 					<span class="login100-form-title p-b-32">
-						 App Owner Login
+						 Add App
 					</span>
 
 					<span class="txt1 p-b-11">
-						Username
+						App Name
 					</span>
 					<div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
-						<input class="input100" type="text" name="username" >
+						<input class="input100" type="text" name="appname" >
 						<span class="focus-input100"></span>
 					</div>
 					
 					<span class="txt1 p-b-11">
-						Password
+						Description
 					</span>
-					<div class="wrap-input100 validate-input m-b-12" data-validate = "Password is required">
-						<span class="btn-show-pass">
-							<i class="fa fa-eye"></i>
-						</span>
-						<input class="input100" type="password" name="password" >
+					<div class="wrap-input100 validate-input m-b-36" data-validate = "Password is required">
+						<input class="input100" type="text" name="description" >
 						<span class="focus-input100"></span>
 					</div>
 					
-					
-					<div class="flex-sb-m w-full p-b-48">
-
-						<div>
-							<a href="appOwnerRegistration.jsp" class="txt3">
-								Need an account?
-							</a>
-						</div>
+					<span class="txt1 p-b-11">
+						Platform
+					</span>
+					<div class="wrap-input100 validate-input m-b-36" data-validate = "Password is required">
+						<select class="input100" name="platform" >
+						    <option>Select Platform</option>
+						    <option value="Android">Android</option>
+						    <option value="IOS">IOS</option>
+						    <option value="BlackBerry OS">BlackBerry OS</option>
+						    <option value="Windows">Windows</option>
+						</select>
+						<span class="focus-input100"></span>
 					</div>
+					
+					<span class="txt1 p-b-11">
+						APK
+					</span>
+					<div class="wrap-input100 validate-input m-b-36" data-validate = "Password is required">
+						<input class="input100" type="file" name="description" >
+						<span class="focus-input100"></span>
+					</div>
+					
 
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-							Login
+							Add
 						</button>
 					</div>
 
@@ -123,9 +133,9 @@
 			</div>
 		</div>
 	</div>
+
 	
 
-	<div id="dropDownSelect1"></div>
 	
 
 		 	

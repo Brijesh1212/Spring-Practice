@@ -21,13 +21,19 @@ try{
 	PreparedStatement pstmt=conn.prepareStatement(sql);
 	
 	ResultSet rs=pstmt.executeQuery();
+	if(rs.next()){
+		session.setAttribute("ownerId",rs.getString("id"));
+		session.setAttribute("ownerEmail",rs.getString("email"));
+		session.setAttribute("ownerUserName",rs.getString("userName"));
+		response.sendRedirect("appOwnerHome.jsp");
+	}else{
 		%>
 		<script type="text/javascript">
-		alert("App owner added to database");
+		alert("Username or password is wrong");
 		window.location="appOwnerLogin.jsp";
 		</script>
 		<%
-	
+	}
 }catch(Exception e){
 	e.printStackTrace();
 	}
