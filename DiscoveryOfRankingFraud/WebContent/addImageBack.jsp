@@ -31,7 +31,7 @@ String ownerId=(String)session.getAttribute("ownerId");
 String appName="";
 String description="";
 String platform="";
-
+String id="";
 List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
 HashMap<String,String> hm= new HashMap<String,String>();
 InputStream filecontent =null;
@@ -44,9 +44,7 @@ for (FileItem item : items) {
     	// Process form file field (input type="text"). patient id
         String fieldname = item.getFieldName();
         //pid = item.getString();
-        appName =hm.get("appname"); 							 //// MADE CHANGES HERE
-        description=hm.get("description");   
-        platform=hm.get("platform");
+        id =hm.get("id"); 							 //// MADE CHANGES HERE
     }
     else { // file fileds here
         // Process form file field (input type="file").
@@ -61,27 +59,20 @@ for (FileItem item : items) {
 	      FileInputStream fis;
 	      int a = 0;
 	     
+	     System.out.println("Id: "+id);
 	    	  try{
     		      Class.forName("com.mysql.jdbc.Driver");
     		   Connection    conn = dbConnection.getConn();     
-	      psmnt = conn.prepareStatement("INSERT INTO apps VALUES(?,?,?,?,?,?,?,?,?)");
-	      psmnt.setString(1,"0");
-	      psmnt.setString(2,appName);
-	      psmnt.setString(3,description);
-	      psmnt.setString(4,platform);
-	      psmnt.setBinaryStream(5, filecontent,(int)item.getSize());
-	      psmnt.setString(6,"0");
-	      psmnt.setString(7,userName);
-	      psmnt.setString(8,ownerId);
-	      psmnt.setString(9,"0");
+	      psmnt = conn.prepareStatement("UPDATE apps SET image=? WHERE id='"+id+"'");
+	      psmnt.setBinaryStream(1, filecontent,(int)item.getSize());
 	      
 	      int s = psmnt.executeUpdate();
 	      
 	      if(s>0){
 	    	  %>
 	  		<script type="text/javascript">
-	  		alert("App added");
-	  		window.location="addApp.jsp";
+	  		alert("App Image added");
+	  		window.location="viewApps.jsp";
 	  		</script>
 	  		<%
 	      }

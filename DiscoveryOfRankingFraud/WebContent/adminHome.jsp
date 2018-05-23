@@ -1,8 +1,3 @@
-<%@page import="org.apache.tomcat.util.codec.binary.Base64"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="database.dbConnection"%>
-<%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -31,83 +26,6 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<link rel="stylesheet" type="text/css" href="css/table.css">
-	<style type="text/css">
-	@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
-html {
-  background: rgb(246, 248, 248);
-}
-body {
-  padding: 40px;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 400;  
-}
-.promos {
-  width: 800px;
-  margin: 0 auto;
-  margin-top: 50px;
-}
-.promo {
-  width: 250px;
-  background: #0F1012; 
-  color: #f9f9f9;
-  float: left;
-}
-.deal {
-  padding: 10px 0 0 0;
-}
-.deal span {
-  display: block;
-  text-align: center;
-}
-.deal span:first-of-type {
-  font-size: 23px;  
-}
-.deal span:last-of-type {
-  font-size: 13px;
-}
-.promo .price {
-  display: block;
-  width: 250px;  
-  background: #292b2e;
-  margin: 15px 0 10px 0;
-  text-align: center;
-  font-size: 23px;
-  padding: 17px 0 17px 0;
-}
-ul {
-  display: block;
-  margin: 20px 0 10px 0;
-  padding: 0;
-  list-style-type: none;
-  text-align: center;
-  color: #999999;
-}
-li {
-  display: block;
-  margin: 10px 0 0 0;
-}
-button {
-  border: none;
-  border-radius: 40px;
-  background: #292b2e;
-  color: #f9f9f9;
-  padding: 10px 37px;
-  margin: 10px 0 20px 60px;
-}
-.scale {
-  transform: scale(1.2);
-  box-shadow: 0 0 4px 1px rgba(20, 20, 20, 0.8);
-}
-.scale button {
-  background: #64AAA4;
-}
-.scale .price {
-  color: #64AAA4;
-}
-	</style>
-	
 <!--===============================================================================================-->
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css'/>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
@@ -140,9 +58,9 @@ button {
 				 <div class="top-menu">
 				 	<span class="menu"> </span> 
 					<ul>
-						 <li><a class="hvr-shutter-out-horizontal" href="appOwnerHome.jsp">Home</a></li>
+						 <li><a class="active hvr-shutter-out-horizontal" href="appOwnerHome.jsp">Home</a></li>
 						 <li><a class="hvr-shutter-out-horizontal" href="addApp.jsp">Add New App</a></li>
-						 <li><a class="active hvr-shutter-out-horizontal" href="viewApps.jsp">View Apps</a></li>
+						 <li><a class="hvr-shutter-out-horizontal" href="viewApps.jsp">View Apps</a></li>
 						 <li><a class="hvr-shutter-out-horizontal" href="index.html">Logout</a></li>
 					 </ul>				 
 				 </div>	
@@ -156,50 +74,21 @@ button {
 		 </script>
 		 <!-- script-for-menu -->	 
 		 </div>	
-		 <div class="promos">
+		 <div  class="banner-bottom">
 		 
-                    <%
-                    String getByteCode=null;
-				    byte[] img=null;
-                    try{
-                    	String sql="SELECT * FROM apps WHERE ownerId='"+session.getAttribute("ownerId")+"'";
-                    	Connection conn=dbConnection.getConn();
-                    	PreparedStatement pstmt=conn.prepareStatement(sql);
-                    	ResultSet rs=pstmt.executeQuery();
-                    	while(rs.next()){
-                    		img = rs.getBytes("image");
-                    	  	 getByteCode = new Base64().encodeToString(img);
-                    		System.out.println("In loop");
-                    		%>
-<div class="promo">
-  <div class="deal">
-    <span><%=rs.getString("appName") %></span>
-    <span><%=rs.getString("description") %></span>
-  </div>
-  <span class="price"><img  src="data:image/jpeg;base64, <%=getByteCode %>" onerror="this.src='app.jpg'" width="160" height="160" ></span>
-  <ul class="features">
-    <li><%=rs.getString("platform") %></li>
-    <li><%=rs.getString("ownerName") %></li>
-    <%if(rs.getString("ststus").equals("0")){ %>
-    <li>Not visible to Public</li>   
-    <%}else{ %>
-    <li>Visible to Public</li>  
-    <%} %>
-  </ul>
-  <br>
-  <a href="addImage.jsp?id=<%=rs.getString("id")%>&name=<%=rs.getString("appName")%>" style="color: blue;">Add image</a> 
+<center><h3 style="color: white;">
+Welcome 
+<%=session.getAttribute("ownerUserName")%>
+</h3>
+</center>
+	
+
+	
+
+		 	
+		 </div>
+	</div>
 </div>
-                    		<%
-                    	}
-                    }catch(Exception e){
-                    	e.printStackTrace();
-                    }
-                    
-                    %>
-                   
-		 </div>
-		 </div>
-		 </div>
 <!--/header-->
 <!--services-->
 
