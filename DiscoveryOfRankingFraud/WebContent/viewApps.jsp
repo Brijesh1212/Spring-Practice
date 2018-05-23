@@ -182,9 +182,12 @@ button {
     <li><%=rs.getString("ownerName") %></li>
     <%if(rs.getString("ststus").equals("0")){ %>
     <li>Not visible to Public</li>   
-    <%}else{ %>
+    <%}else if(rs.getString("ststus").equals("1")){ %>
     <li>Visible to Public</li>  
-    <%} %>
+    <%}else{%>
+    <li>App is Removed</li>  
+    <%
+    } %>
   </ul>
   <br>
   <a href="addImage.jsp?id=<%=rs.getString("id")%>&name=<%=rs.getString("appName")%>" style="color: blue;">Add image</a> 

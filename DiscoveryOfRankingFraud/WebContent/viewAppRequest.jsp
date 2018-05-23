@@ -143,6 +143,7 @@ button {
 						 <li><a class="hvr-shutter-out-horizontal" href="adminHome.jsp">Home</a></li>
 						 <li><a class="active hvr-shutter-out-horizontal" href="viewAppRequest.jsp">App Request</a></li>
 						 <li><a class="hvr-shutter-out-horizontal" href="viewFraudDetails.jsp">Fraud Details</a></li>
+						 <li><a class="hvr-shutter-out-horizontal" href="viewAllApps.jsp">View All Apps</a></li>
 						 <li><a class="hvr-shutter-out-horizontal" href="index.html">Logout</a></li>
 					 </ul>				 
 				 </div>	
@@ -181,9 +182,9 @@ button {
     <li><%=rs.getString("platform") %></li>
     <li><%=rs.getString("ownerName") %></li>
     <%if(rs.getString("ststus").equals("0")){ %>
-    <li><a href="accept.jsp?id=<%=rs.getString("id")%>" style="color: blue;">Accept Request</a> </li>   
+    <li><a href="accept.jsp?id=<%=rs.getString("id")%>" style="color: blue;">Accept Request</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="reject.jsp?id=<%=rs.getString("id")%>" style="color: blue;">Reject</a> </li>   
     <%}else{ %>
-    <li>Visible to Public</li>  
+    <li><a href="reject.jsp?id=<%=rs.getString("id")%>" style="color: blue;">Remove From Public</a></li>  
     <%} %>
   </ul>
   <br>

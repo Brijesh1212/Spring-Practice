@@ -61,6 +61,7 @@
 						 <li><a class="hvr-shutter-out-horizontal" href="adminHome.jsp">Home</a></li>
 						 <li><a class="hvr-shutter-out-horizontal" href="viewAppRequest.jsp">App Request</a></li>
 						 <li><a class="active hvr-shutter-out-horizontal" href="viewFraudDetails.jsp">Fraud Details</a></li>
+						 <li><a class="hvr-shutter-out-horizontal" href="viewAllApps.jsp">View All Apps</a></li>
 						 <li><a class="hvr-shutter-out-horizontal" href="index.html">Logout</a></li>
 					 </ul>				 
 				 </div>	
