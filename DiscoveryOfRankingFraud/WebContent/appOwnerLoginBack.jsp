@@ -16,7 +16,7 @@ String userName=request.getParameter("username");
 String password=request.getParameter("password");
 
 try{
-	String sql="SELECT * FROM user WHERE userName='"+userName+"' AND password='"+password+"'";
+	String sql="SELECT * FROM owner WHERE userName='"+userName+"' AND password='"+password+"'";
 	Connection conn=dbConnection.getConn();
 	PreparedStatement pstmt=conn.prepareStatement(sql);
 	

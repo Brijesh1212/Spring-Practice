@@ -26,6 +26,11 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	
+	<!--Table Bootstrap -->
+            <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+            <!--Table Main Style -->
+            <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 <!--===============================================================================================-->
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css'/>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
@@ -74,21 +79,77 @@
 		 </script>
 		 <!-- script-for-menu -->	 
 		 </div>	
-		 <div  class="banner-bottom">
+		 <section id="pricing-table">
+            <div class="container">
+                <div class="row">
+                    <div class="pricing">
+                    
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <div class="pricing-table">
+                                <div class="pricing-header">
+                                    <p class="pricing-title">Free Plan</p>
+                                    <p class="pricing-rate"><sup>$</sup> 0 <span>/Mo.</span></p>
+                                    <a href="#" class="btn btn-custom">And Get Free Month</a>
+                                </div>
+
+                                <div class="pricing-list">
+                                    <ul>
+                                        <li><i class="fa fa-envelope"></i>1,000 messages</li>
+                                        <li><i class="fa fa-signal"></i><span>limited</span> data</li>
+                                        <li><i class="fa fa-user"></i><span>limited</span> users</li>
+                                        <li><i class="fa fa-smile-o"></i>first 10 day free</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <div class="pricing-table">
+                                <div class="pricing-header">
+                                    <p class="pricing-title">Business Plan</p>
+                                    <p class="pricing-rate"><sup>$</sup> 20 <span>/Mo.</span></p>
+                                    <a href="#" class="btn btn-custom">And Get Free Month</a>
+                                </div>
+
+                                <div class="pricing-list">
+                                    <ul>
+                                        <li><i class="fa fa-envelope"></i>10,000 messages</li>
+                                        <li><i class="fa fa-signal"></i><span>unlimited</span> data</li>
+                                        <li><i class="fa fa-user"></i><span>unlimited</span> users</li>
+                                        <li><i class="fa fa-smile-o"></i>first 10 day free</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <div class="pricing-table">
+                                <div class="pricing-header">
+                                    <p class="pricing-title">Extended Plan</p>
+                                    <p class="pricing-rate"><sup>$</sup> 80 <span>/Mo.</span></p>
+                                    <a href="#" class="btn btn-custom">And Get Free Month</a>
+                                </div>
+
+                                <div class="pricing-list">
+                                    <ul>
+                                        <li><i class="fa fa-envelope"></i>10,0000 messages</li>
+                                        <li><i class="fa fa-signal"></i><span>unlimited</span> data</li>
+                                        <li><i class="fa fa-user"></i><span>unlimited</span> users</li>
+                                        <li><i class="fa fa-smile-o"></i>first 10 day free</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
 		 
-<center><h3 style="color: white;">
-Welcome 
-<%=session.getAttribute("ownerUserName")%>
-</h3>
-</center>
-	
 
-	
-
-		 	
+		 
 		 </div>
 	</div>
-</div>
 <!--/header-->
 <!--services-->
 

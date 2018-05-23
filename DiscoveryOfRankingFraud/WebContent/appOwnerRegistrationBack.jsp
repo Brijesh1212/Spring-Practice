@@ -20,7 +20,7 @@ String number=request.getParameter("number");
 String address=request.getParameter("address");
 
 try{
-	String sql="INSERT INTO user VALUES(?,?,?,?,?,?,?,?,?) ";
+	String sql="INSERT INTO owner VALUES(?,?,?,?,?,?,?,?,?) ";
 	Connection conn=dbConnection.getConn();
 	PreparedStatement pstmt=conn.prepareStatement(sql);
 	pstmt.setString(1, "0");
