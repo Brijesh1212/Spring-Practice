@@ -106,11 +106,6 @@
 					
 					<div class="flex-sb-m w-full p-b-48">
 
-						<div>
-							<a href="userRegistration.jsp" class="txt3">
-								Need an account?
-							</a>
-						</div>
 					</div>
 
 					<div class="container-login100-form-btn">
