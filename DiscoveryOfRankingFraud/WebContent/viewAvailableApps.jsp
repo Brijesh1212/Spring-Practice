@@ -169,6 +169,7 @@ button {
                     	while(rs.next()){
                     		img = rs.getBytes("image");
                     	  	 getByteCode = new Base64().encodeToString(img);
+                    	  	 session.setAttribute("image", getByteCode);
                     		System.out.println("In loop");
                     		%>
 <div class="promo">
@@ -180,7 +181,8 @@ button {
   <ul class="features">
     <li><%=rs.getString("platform") %></li>
     <li><%=rs.getString("ownerName") %></li>
-    <li><a href="download.jsp?id=<%=rs.getString("id")%>" style="color: blue;">Download</a> </li>  
+    <li><a href="download.jsp?id=<%=rs.getString("id")%>" style="color: blue;">Download</a> </li>
+    <li><a href="showReview.jsp?id=<%=rs.getString("id")%>&name=<%=rs.getString("appName") %>" style="color: blue;">Read Review</a> </li>    
   </ul>
   <br>
 </div>

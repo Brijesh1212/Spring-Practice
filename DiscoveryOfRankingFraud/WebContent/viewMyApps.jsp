@@ -173,6 +173,7 @@ button {
                         	while(rs1.next()){
                         		img = rs1.getBytes("image");
                        	  	 getByteCode = new Base64().encodeToString(img);
+                       	  session.setAttribute("image", getByteCode);
                     		System.out.println("In loop");
                     		%>
 <div class="promo">
@@ -205,6 +206,7 @@ button {
      <input type="submit" value="Submit Review">
      </form>
      </li>   
+     <li><a href="showReview.jsp?id=<%=rs1.getString("id")%>&name=<%=rs1.getString("appName") %>" style="color: blue;">Read Review</a> </li>
     <%
                         	}
     %>

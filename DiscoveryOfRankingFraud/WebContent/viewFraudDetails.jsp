@@ -1,3 +1,7 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="database.dbConnection"%>
+<%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -46,6 +50,31 @@
 			});
 		</script>
 <!--start-smoth-scrolling-->
+<style type="text/css">
+<style>
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
 </head>
 <body>
 <!--header-->
@@ -77,16 +106,72 @@
 		 </div>	
 		 <div  class="banner-bottom">
 		 
-<center><h3 style="color: white;">
-Welcome 
-<%=session.getAttribute("ownerUserName")%>
-</h3>
-</center>
-	
-
-	
-
-		 	
+		 <table id="customers">
+  <tr>
+    <th>Owner Name</th>
+    <th>Email Id</th>
+    <th>DOB</th>
+    <th>Gender</th>
+    <th>Contact Number</th>
+    <th>Address</th>
+    <th>IP Address</th>
+    <th>MAC Address</th>
+    <th>Action</th>
+  </tr>
+  <%
+  
+  try{
+	  String sql="SELECT * FROM owner";
+	  Connection conn=dbConnection.getConn();
+	  PreparedStatement pstmt=conn.prepareStatement(sql);
+	  ResultSet rs=pstmt.executeQuery();
+	  while(rs.next()){
+		  String sql1="SELECT * FROM user WHERE email='"+rs.getString("email")+"'";
+		  PreparedStatement pstmt1=conn.prepareStatement(sql1);
+		  ResultSet rs1=pstmt1.executeQuery();
+		  while(rs1.next()){
+			  String sql2="SELECT COUNT(userId) as c FROM ratings WHERE userId='"+rs1.getString("id")+"'";
+			  PreparedStatement pstmt2=conn.prepareStatement(sql2);
+			  ResultSet rs2=pstmt2.executeQuery();
+			  while(rs2.next()){
+				  if(rs2.getInt(1)>2){
+					  String sql3="SELECT * FROM ratings WHERE userId='"+rs1.getString("id")+"'";
+					  PreparedStatement pstmt3=conn.prepareStatement(sql3);
+					  ResultSet rs3=pstmt3.executeQuery();
+					  if(rs3.next()){
+						 /*  String sql4="SELECT * FROM user WHERE id='"+rs3.getString("userId")+"'";
+						  PreparedStatement pstmt4=conn.prepareStatement(sql4);
+						  ResultSet rs4=pstmt4.executeQuery(); */
+							  /* String sql5="SELECT * FROM ratings WHERE userId='"+rs1.getString("id")+"'";
+							  PreparedStatement pstmt5=conn.prepareStatement(sql5);
+							  ResultSet rs5=pstmt5.executeQuery(); */
+							  if((rs3.getString("ipAddress").equals(rs.getString("ipAddress")))&&(rs3.getString("macAddess").equals(rs.getString("macAddress")))){
+								  %>
+								  <tr>
+								    <td><%=rs.getString("userName") %></td>
+								    <td><%=rs.getString("email") %></td>
+								    <td><%=rs.getString("dob") %></td>
+								    <td><%=rs.getString("gender") %></td>
+								    <td><%=rs.getString("number") %></td>
+								    <td><%=rs.getString("address") %></td>
+								    <td><%=rs.getString("ipAddress") %></td>
+								    <td><%=rs.getString("macAddress") %></td>
+								    <td><a href="deactivateAccount.jsp?id=<%=rs.getString("id") %>" style="color: blue;text-decoration: none;">Deactivate Account</a> </td>
+								  </tr><%
+							  }
+						  }
+					  }
+					  
+				  }
+			  }
+		  }
+  }catch(Exception es){
+	  es.printStackTrace();
+  }
+  %>
+  </table>
+		 
+		 
 		 </div>
 	</div>
 </div>
@@ -95,7 +180,6 @@ Welcome
 
 <!--Footer-->
 <div style="height: 100px;background-color: gray">
-	
 </div>
 <!--/Footer-->
 <!--copyrights-->

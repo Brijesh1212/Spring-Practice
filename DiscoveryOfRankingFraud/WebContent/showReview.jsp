@@ -1,3 +1,7 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="database.dbConnection"%>
+<%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -58,10 +62,6 @@
 				 <div class="top-menu">
 				 	<span class="menu"> </span> 
 					<ul>
-						 <li><a class="active hvr-shutter-out-horizontal" href="adminHome.jsp">Home</a></li>
-						 <li><a class="hvr-shutter-out-horizontal" href="viewAppRequest.jsp">App Request</a></li>
-						 <li><a class="hvr-shutter-out-horizontal" href="viewFraudDetails.jsp">Fraud Details</a></li>
-						 <li><a class="hvr-shutter-out-horizontal" href="viewAllApps.jsp">View All Apps</a></li>
 						 <li><a class="hvr-shutter-out-horizontal" href="index.html">Logout</a></li>
 					 </ul>				 
 				 </div>	
@@ -75,17 +75,63 @@
 		 </script>
 		 <!-- script-for-menu -->	 
 		 </div>	
+		 <%
+		 String id=request.getParameter("id");
+	     String appName=request.getParameter("name");
+				 int avg=0;
+				 String image=(String)session.getAttribute("image");
+				 try{
+					 String sql2="SELECT avg(rating) as r FROM ratings WHERE appId='"+id+"'";
+			        	Connection conn2=dbConnection.getConn();
+			        	PreparedStatement pstmt2=conn2.prepareStatement(sql2);
+			        	ResultSet rs2=pstmt2.executeQuery();
+			        	if(rs2.next()){
+			        		avg=rs2.getInt(1);
+			        	}
+				 }catch(Exception es){
+					 
+				 }
+		 %>
 		 <div  class="banner-bottom">
-		 
-<center><h3 style="color: white;">
-Welcome 
-<%=session.getAttribute("ownerUserName")%>
-</h3>
-</center>
-	
-
-	
-
+		 <div style="width: 100%;height: auto;background-color: white;">
+		      <div style="width: 100%;height: 60px;background-color: #4286f4">
+		           <img  src="data:image/jpeg;base64, <%= image%>" onerror="this.src='app.jpg'" width="60" height="60" >
+		           <h3 style="position: relative;top: -40px;left: 70px;"><%=appName %></h3>
+		           <h3 style="position: relative;top: -65px;left: 370px;">Avarage Rating : <%=avg %></h3>
+		      </div>
+		      <br>
+		      <%
+		        try{
+		        	String sql="SELECT * FROM reviews WHERE appId='"+id+"'";
+		        	Connection conn=dbConnection.getConn();
+		        	PreparedStatement pstmt=conn.prepareStatement(sql);
+		        	ResultSet rs=pstmt.executeQuery();
+		        	while(rs.next()){
+		        		String sql1="SELECT * FROM user WHERE id='"+rs.getString("useId")+"'";
+			        	Connection conn1=dbConnection.getConn();
+			        	PreparedStatement pstmt1=conn1.prepareStatement(sql1);
+			        	ResultSet rs1=pstmt1.executeQuery();
+			        	String userName="";
+			        	if(rs1.next()){
+			        		userName=rs1.getString("userName");
+			        	}
+		        		%>
+		        		<div style="padding: 10px;background-color: #6f8099;margin-left: 10px;margin-right: 10px;">
+		        		<h4><%= userName%></h4> 
+		                </div>
+		                <div style="padding: 10px;background-color: #0b2651;margin-left: 10px;margin-right: 10px;color: white;">
+		                <h4><%= rs.getString("review")%></h4><br>
+		                <h5><%= rs.getString("date")%></h5>
+		                </div>
+		                <br>
+		        		<%
+		        	}
+		        }catch(Exception es){
+		        	es.printStackTrace();
+		        	}
+		      %>
+		      <br>
+		 </div>
 		 	
 		 </div>
 	</div>

@@ -1,3 +1,7 @@
+<%@page import="java.net.SocketException"%>
+<%@page import="java.net.UnknownHostException"%>
+<%@page import="java.net.NetworkInterface"%>
+<%@page import="java.net.InetAddress"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="database.dbConnection"%>
 <%@page import="java.sql.Connection"%>
@@ -18,9 +22,39 @@ String dob=request.getParameter("dob");
 String gender=request.getParameter("gender");
 String number=request.getParameter("number");
 String address=request.getParameter("address");
+String ipAddress="";
+String macAddress="";
+InetAddress ip;
+try {
+		
+	ip = InetAddress.getLocalHost();
+	System.out.println("Current IP address : " + ip.getHostAddress());
+	ipAddress=ip.getHostAddress();
+	NetworkInterface network = NetworkInterface.getByInetAddress(ip);
+		
+	byte[] mac = network.getHardwareAddress();
+		
+	System.out.print("Current MAC address : ");
+		
+	StringBuilder sb = new StringBuilder();
+	for (int i = 0; i < mac.length; i++) {
+		sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));		
+	}
+	macAddress=sb.toString();
+	System.out.println(sb.toString());
+		
+} catch (UnknownHostException e) {
+	
+	e.printStackTrace();
+	
+} catch (SocketException e){
+		
+	e.printStackTrace();
+		
+}
 
 try{
-	String sql="INSERT INTO owner VALUES(?,?,?,?,?,?,?,?,?) ";
+	String sql="INSERT INTO owner VALUES(?,?,?,?,?,?,?,?,?,?,?) ";
 	Connection conn=dbConnection.getConn();
 	PreparedStatement pstmt=conn.prepareStatement(sql);
 	pstmt.setString(1, "0");
@@ -32,6 +66,8 @@ try{
 	pstmt.setString(7, number);
 	pstmt.setString(8, address);
 	pstmt.setString(9, "0");
+	pstmt.setString(10, ipAddress);
+	pstmt.setString(11, macAddress);
 	
 	int st=pstmt.executeUpdate();
 	if(st>0){

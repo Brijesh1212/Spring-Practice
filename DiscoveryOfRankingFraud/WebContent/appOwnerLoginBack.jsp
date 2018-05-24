@@ -16,16 +16,28 @@ String userName=request.getParameter("username");
 String password=request.getParameter("password");
 
 try{
-	String sql="SELECT * FROM owner WHERE userName='"+userName+"' AND password='"+password+"'";
+	String sql="SELECT * FROM owner WHERE userName='"+userName+"' AND password='"+password+"' ";
 	Connection conn=dbConnection.getConn();
 	PreparedStatement pstmt=conn.prepareStatement(sql);
 	
 	ResultSet rs=pstmt.executeQuery();
 	if(rs.next()){
+		if(rs.getString("status").equals("1")){
+			%>
+			<script type="text/javascript">
+			alert("Your Account is Deactivated by Admin");
+			window.location="appOwnerLogin.jsp";
+			</script>
+			<%
+		}
 		session.setAttribute("ownerId",rs.getString("id"));
 		session.setAttribute("ownerEmail",rs.getString("email"));
 		session.setAttribute("ownerUserName",rs.getString("userName"));
-		response.sendRedirect("appOwnerHome.jsp");
+		%>
+		<script type="text/javascript">
+		window.location="appOwnerHome.jsp";
+		</script>
+		<%
 	}else{
 		%>
 		<script type="text/javascript">
